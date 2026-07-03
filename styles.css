@@ -435,36 +435,80 @@ a { color: inherit; }
 .modal.open { display: flex; }
 .modal-backdrop { position: absolute; inset: 0; background: rgba(11,7,24,.6); backdrop-filter: blur(6px); animation: fade .25s ease; }
 .modal-card {
-  position: relative; background: #fff; border-radius: 22px; padding: 38px;
-  width: 100%; max-width: 540px; max-height: 92vh; overflow-y: auto;
+  position: relative; background: #fff; border-radius: 20px; padding: 40px 40px 23px;
+  width: 100%; max-width: 896px; max-height: 92vh; overflow-y: auto;
   box-shadow: 0 30px 90px rgba(11,7,24,.4); animation: pop .3s cubic-bezier(.2,.8,.3,1);
 }
 @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
 @keyframes pop { from { opacity: 0; transform: translateY(20px) scale(.97); } to { opacity: 1; transform: none; } }
-.modal-close { position: absolute; top: 16px; right: 18px; background: none; border: none; font-size: 30px; line-height: 1; color: var(--muted); cursor: pointer; transition: color .2s; }
-.modal-close:hover { color: var(--primary); }
-.modal-card h3 { font-weight: 800; font-size: 28px; color: var(--primary); margin-bottom: 8px; }
-.modal-sub { font-size: 15px; color: var(--body-col); line-height: 1.5; margin-bottom: 24px; }
-.field { margin-bottom: 16px; text-align: left; }
-.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-.field label { display: block; font-size: 13px; font-weight: 600; color: var(--primary); margin-bottom: 6px; }
-.field input, .field select, .field textarea {
-  width: 100%; font-family: inherit; font-size: 15px; color: var(--primary);
-  padding: 11px 14px; border: 1.5px solid var(--border); border-radius: 10px; background: #fbfbfd;
-  transition: border-color .2s, box-shadow .2s; resize: vertical;
+/* Contact modal — Figma 1986:1424 (896x631, panel 816x448, sidebar 360) */
+.ct-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+.ct-head h3 {
+  font-family: var(--font-head); font-weight: 800; font-size: 28px;
+  color: var(--primary); line-height: normal; margin: 0;
 }
-.field input:focus, .field select:focus, .field textarea:focus {
-  outline: none; border-color: var(--grad-b); box-shadow: 0 0 0 3px rgba(199,86,217,.12); background: #fff;
-}
-.field.invalid input, .field.invalid textarea { border-color: #e5484d; }
-.err { display: none; font-size: 12px; color: #e5484d; margin-top: 5px; }
-.field.invalid .err { display: block; }
+.ct-close { background: none; border: none; cursor: pointer; padding: 6px; margin: -2px -6px 0 0; opacity: .85; transition: opacity .2s; }
+.ct-close:hover { opacity: 1; }
+.ct-close img { width: 24px; height: 24px; display: block; }
 
-.modal-success { text-align: center; padding: 20px 0; }
-.ms-check { width: 66px; height: 66px; margin: 0 auto 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; background: linear-gradient(135deg, var(--grad-a), var(--grad-b), var(--grad-c)); }
-.ms-check svg { width: 32px; height: 32px; }
-.modal-success h3 { margin-bottom: 8px; }
-.modal-success p { color: var(--body-col); margin-bottom: 22px; }
+.ct-panel {
+  display: flex; margin-top: 18px; min-height: 448px;
+  background: #fff; border: 1px solid #eee; border-radius: 20px; overflow: hidden;
+}
+.ct-side {
+  width: 360px; flex-shrink: 0; background: #f5f6fa;
+  padding: 32px; border-radius: 20px 0 0 20px;
+}
+.ct-side h4 { font-family: var(--font-head); font-weight: 600; font-size: 20px; color: var(--primary); margin: 0 0 11px; }
+.ct-side-sub { font-size: 16px; font-weight: 600; color: #6b617c; line-height: normal; max-width: 270px; margin: 0 0 46px; }
+.ct-items { list-style: none; margin: 0; padding: 0; }
+.ct-items li { display: flex; align-items: flex-start; gap: 13px; margin-bottom: 20px; }
+.ct-items img { width: 38px; height: 38px; flex-shrink: 0; }
+.ct-items span { font-size: 15px; font-weight: 600; color: #6b617c; line-height: 20px; letter-spacing: -.15px; padding-top: 7px; }
+
+.ct-form { flex: 1; padding: 32px; }
+.ct-field { margin-bottom: 20px; text-align: left; }
+.ct-field:last-child { margin-bottom: 0; }
+.ct-field label { display: block; font-size: 16px; font-weight: 600; color: #6b617c; margin-bottom: 8px; }
+.ct-field input, .ct-field textarea, .ct-code select {
+  font-family: var(--font-body); font-size: 14px; font-weight: 600; color: var(--primary);
+  background: #fff; border: 1px solid #e0e4ef; border-radius: 6px;
+  transition: border-color .2s, box-shadow .2s;
+}
+.ct-field input { width: 100%; height: 42px; padding: 0 16px; }
+.ct-field textarea { width: 100%; height: 98px; padding: 12px 16px; resize: none; }
+.ct-field input::placeholder, .ct-field textarea::placeholder { color: var(--primary); opacity: .3; font-weight: 600; }
+.ct-field input:focus, .ct-field textarea:focus, .ct-code select:focus {
+  outline: none; border-color: var(--grad-b); box-shadow: 0 0 0 3px rgba(199,86,217,.10);
+}
+.ct-phone { display: flex; }
+.ct-code { position: relative; flex-shrink: 0; }
+.ct-code select {
+  appearance: none; -webkit-appearance: none; width: 90px; height: 42px;
+  padding: 0 28px 0 16px; border-radius: 6px 0 0 6px; border-right: none; cursor: pointer;
+}
+.ct-chev { position: absolute; right: 8px; top: 50%; transform: translateY(-50%) rotate(90deg); width: 24px; height: 24px; pointer-events: none; }
+.ct-phone input { border-radius: 0 6px 6px 0; }
+.ct-field.invalid input, .ct-field.invalid textarea { border-color: #e5484d; }
+.err { display: none; font-size: 12px; font-weight: 600; color: #e5484d; margin-top: 5px; }
+.ct-field.invalid .err { display: block; }
+
+.ct-actions { display: flex; justify-content: flex-end; margin-top: 20px; }
+.ct-submit {
+  font-family: var(--font-body); font-size: 18px; font-weight: 600; color: #fff;
+  background: var(--primary); border: none; cursor: pointer;
+  height: 48px; padding: 0 28px; border-radius: 68px;
+  transition: opacity .2s, transform .18s;
+}
+.ct-submit:hover { opacity: .9; transform: translateY(-1px); }
+
+/* Success view — Figma 2219:7483 */
+.ct-panel-success {
+  flex-direction: column; align-items: center; justify-content: center; text-align: center;
+}
+.ct-success-icon { width: 60px; height: 52px; margin-bottom: 13px; }
+.ct-success-title { font-size: 22px; font-weight: 600; color: #4aaf51; margin: 0 0 8px; }
+.ct-success-body { font-size: 14px; font-weight: 500; color: var(--primary); opacity: .8; line-height: normal; margin: 0; }
 
 /* ══ BACK TO TOP ═════════════════════════════════ */
 .to-top {
@@ -529,9 +573,14 @@ a { color: inherit; }
     grid-template-columns: 1fr;
     grid-template-areas: "genai" "agentic" "strategy" "predictive" "aiops" "llm" "responsible" "edge";
   }
-  .field-row { grid-template-columns: 1fr; }
   .ft-bottom { justify-content: flex-start; flex-direction: column; align-items: flex-start; }
-  .modal-card { padding: 28px 22px; }
+  .modal-card { padding: 24px 20px 20px; }
+  .ct-head h3 { font-size: 21px; }
+  .ct-panel { flex-direction: column; min-height: 0; }
+  .ct-side { width: 100%; border-radius: 20px 20px 0 0; padding: 24px; }
+  .ct-side-sub { margin-bottom: 24px; }
+  .ct-form { padding: 24px 20px; }
+  .ct-panel-success { padding: 48px 20px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .js .reveal:not(.in) { opacity: 1; transform: none; transition: none; }

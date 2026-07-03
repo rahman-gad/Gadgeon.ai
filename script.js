@@ -119,7 +119,8 @@
   /* ── Contact modal ── */
   var modal = document.getElementById('contactModal');
   var form = document.getElementById('contactForm');
-  var success = document.getElementById('modalSuccess');
+  var ctBody = document.getElementById('ctBody');
+  var ctSuccess = document.getElementById('ctSuccess');
   var lastFocus = null;
 
   function openModal(e) {
@@ -128,7 +129,7 @@
     modal.classList.add('open');
     modal.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
-    form.hidden = false; success.hidden = true;
+    ctBody.hidden = false; ctSuccess.hidden = true;
     var f = modal.querySelector('input, textarea');
     if (f) setTimeout(function () { f.focus(); }, 60);
   }
@@ -150,7 +151,7 @@
 
   /* ── Form validation + submit ── */
   function setError(name, msg) {
-    var field = form.querySelector('[name="' + name + '"]').closest('.field');
+    var field = form.querySelector('[name="' + name + '"]').closest('.ct-field');
     field.classList.toggle('invalid', !!msg);
     var errEl = form.querySelector('[data-err-for="' + name + '"]');
     if (errEl) errEl.textContent = msg || '';
@@ -160,37 +161,32 @@
     var ok = true;
     var name = form.name.value.trim();
     var email = form.email.value.trim();
-    var message = form.message.value.trim();
+    var phone = form.phone.value.trim();
 
-    if (!name) { setError('name', 'Please enter your name.'); ok = false; } else setError('name', '');
-    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { setError('email', 'Enter a valid email.'); ok = false; } else setError('email', '');
-    if (!message) { setError('message', 'Tell us a bit about your challenge.'); ok = false; } else setError('message', '');
+    if (!name) { setError('name', 'Please enter your full name.'); ok = false; } else setError('name', '');
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { setError('email', 'Enter a valid work email.'); ok = false; } else setError('email', '');
+    if (!phone || !/^[0-9 \-()]{6,15}$/.test(phone)) { setError('phone', 'Enter a valid phone number.'); ok = false; } else setError('phone', '');
 
     if (!ok) return;
 
-    // No backend wired — surface success and offer a mailto fallback.
-    var subject = encodeURIComponent('Enquiry from ' + name + (form.company.value ? ' (' + form.company.value + ')' : ''));
-    var body = encodeURIComponent(
-      'Name: ' + name + '\nEmail: ' + email + '\nCompany: ' + form.company.value +
-      '\nInterest: ' + form.interest.value + '\n\n' + message
-    );
-    // Store draft so nothing is lost; also expose a mailto link on the success card.
-    try { window.__gadgeonLastEnquiry = { name: name, email: email, message: message }; } catch (_) {}
+    // No backend wired — capture the enquiry and show the success view.
+    try {
+      window.__gadgeonLastEnquiry = {
+        name: name, email: email,
+        phone: form.code.value + ' ' + phone,
+        message: form.message.value.trim()
+      };
+    } catch (_) {}
 
-    form.hidden = true;
-    success.hidden = false;
+    ctBody.hidden = true;
+    ctSuccess.hidden = false;
     form.reset();
-
-    // Optional: open the user's mail client as a real send path.
-    // Commented out to keep the in-page success flow clean; uncomment to enable.
-    // window.location.href = 'mailto:hello@gadgeon.ai?subject=' + subject + '&body=' + body;
-    void subject; void body;
   });
 
   // Clear a field's error as the user corrects it.
   form.querySelectorAll('input, textarea').forEach(function (el) {
     el.addEventListener('input', function () {
-      var f = el.closest('.field');
+      var f = el.closest('.ct-field');
       if (f && f.classList.contains('invalid')) f.classList.remove('invalid');
     });
   });
