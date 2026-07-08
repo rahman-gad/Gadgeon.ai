@@ -31,7 +31,41 @@ window.UX_CONTENT = {
       tags: ['Risk Reduction', 'Cost Savings', 'ROI'] }
   ],
 
-  whyFootnote: '¹ Forrester (≈9,900% ROI) · ² Forrester Total Economic Impact · Growth benchmark: McKinsey Design Index',
+  whyCompare: {
+    bad: {
+      title: 'The Cost of Poor UX',
+      items: [
+        '88% of users never return after a bad experience',
+        'Up to 70% of enterprise software goes under-adopted when UX is an afterthought',
+        'Fixing a usability problem after development costs up to 100x more',
+        'Half of engineering time burns on avoidable rework'
+      ]
+    },
+    good: {
+      title: 'The Return on Great UX',
+      items: [
+        'Design-led companies grow revenue 2x faster than industry peers',
+        '$100 returned for every $1 invested in UX',
+        'CX leaders outperform laggards by ~80% on key business KPIs',
+        '415% ROI from embedding usability research early'
+      ]
+    }
+  },
+
+  roiCalc: {
+    heading: 'What could better UX be worth to you?',
+    sub: 'A conservative estimate — studies report 200–400% conversion lifts from well-designed interfaces. We model just +25%.',
+    lift: 0.25,
+    fields: [
+      { key: 'visitors', label: 'Monthly visitors / users', value: 50000, min: 100 },
+      { key: 'conv',     label: 'Conversion rate (%)',      value: 2,     min: 0.1, step: 0.1 },
+      { key: 'value',    label: 'Avg value per conversion ($)', value: 150, min: 1 }
+    ],
+    resultLabel: 'Potential additional revenue per year',
+    disclaimer: 'Illustrative estimate, not a guarantee — talk to us for a model based on your real funnel.'
+  },
+
+  whyFootnote: '¹ Forrester (≈9,900% ROI) · ² Forrester Total Economic Impact · Other benchmarks: McKinsey Design Index, IBM Systems Sciences, Amazon/Econsultancy CX research',
 
   /* ── AI-Driven UX Process — scroll timeline ── */
   process: [
@@ -171,6 +205,63 @@ window.UX_CONTENT = {
     d.appendChild(row);
     wc.appendChild(d);
   });
+  /* Poor vs Great UX comparison */
+  var cmp = document.getElementById('uxWhyCompare');
+  if (cmp && C.whyCompare) {
+    [['bad', C.whyCompare.bad], ['good', C.whyCompare.good]].forEach(function (pair) {
+      var kind = pair[0], data = pair[1];
+      var card = el('article', 'uxcmp ' + kind + ' reveal');
+      card.appendChild(el('h3', null, esc(data.title)));
+      var ul = el('ul');
+      data.items.forEach(function (it) {
+        var li = el('li');
+        li.appendChild(el('span', 'uxcmp-mark', kind === 'bad'
+          ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>'
+          : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>'));
+        li.appendChild(el('span', null, esc(it)));
+        ul.appendChild(li);
+      });
+      card.appendChild(ul);
+      cmp.appendChild(card);
+    });
+  }
+
+  /* ROI mini-calculator */
+  var calc = document.getElementById('uxRoiCalc');
+  if (calc && C.roiCalc) {
+    var R = C.roiCalc;
+    calc.appendChild(el('h3', 'uxroi-h', esc(R.heading)));
+    calc.appendChild(el('p', 'uxroi-sub', esc(R.sub)));
+    var row = el('div', 'uxroi-row');
+    var inputs = {};
+    R.fields.forEach(function (f) {
+      var fld = el('label', 'uxroi-field');
+      fld.appendChild(el('span', null, esc(f.label)));
+      var inp = document.createElement('input');
+      inp.type = 'number'; inp.value = f.value; inp.min = f.min;
+      if (f.step) inp.step = f.step;
+      inputs[f.key] = inp;
+      fld.appendChild(inp);
+      row.appendChild(fld);
+    });
+    calc.appendChild(row);
+    var out = el('div', 'uxroi-out');
+    out.appendChild(el('div', 'uxroi-out-l', esc(R.resultLabel)));
+    var val = el('div', 'uxroi-out-v grad-txt', '$0');
+    out.appendChild(val);
+    calc.appendChild(out);
+    calc.appendChild(el('p', 'uxroi-note', esc(R.disclaimer)));
+    function compute() {
+      var v = parseFloat(inputs.visitors.value) || 0;
+      var c = (parseFloat(inputs.conv.value) || 0) / 100;
+      var a = parseFloat(inputs.value.value) || 0;
+      var extra = v * 12 * c * a * R.lift;
+      val.textContent = '+$' + Math.round(extra).toLocaleString('en-US') + ' / year';
+    }
+    Object.keys(inputs).forEach(function (k) { inputs[k].addEventListener('input', compute); });
+    compute();
+  }
+
   var wf = document.getElementById('uxWhyFootnote');
   if (wf) wf.textContent = C.whyFootnote;
 
