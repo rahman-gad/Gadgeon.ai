@@ -142,6 +142,8 @@
   document.querySelectorAll('[data-open-contact]').forEach(function (b) {
     b.addEventListener('click', openModal);
   });
+  // Allow other widgets (e.g. the chatbot) to open the contact form.
+  window.openContactModal = openModal;
   document.querySelectorAll('[data-close-contact]').forEach(function (b) {
     b.addEventListener('click', closeModal);
   });
