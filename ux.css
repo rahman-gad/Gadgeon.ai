@@ -1,27 +1,10 @@
 /* ══════════════════════════════════════════════════
-   Gadgeon UX Practice — page styles (Figma 16:5)
-   Loads after styles.css; shares nav/footer/modal/chatbot.
+   Gadgeon UX Practice — page styles
+   Hero preserved from Figma 16:5; all other sections
+   follow the gadgeon.ai design system (styles.css).
    ══════════════════════════════════════════════════ */
 
-/* ── Section shell & shared type ── */
-.ux-section { padding: clamp(72px, 9vw, 130px) 24px; text-align: center; }
-.ux-eyebrow {
-  font-family: var(--font-body); font-weight: 700; font-size: 18px;
-  color: #737373; margin-bottom: 18px;
-}
-.ux-h2 {
-  font-family: var(--font-body); font-weight: 700;
-  font-size: clamp(34px, 4.4vw, 60px); line-height: 1.18;
-  color: #1a1a1a; margin: 0 0 22px;
-}
-.ux-h2 .dim { color: #929292; }
-.ux-sub {
-  font-family: var(--font-body); font-weight: 700;
-  font-size: clamp(17px, 1.8vw, 22px); color: #737373; line-height: 1.5;
-  max-width: 680px; margin: 0 auto;
-}
-
-/* ── HERO (810px dark, photo + 50% black overlay) ── */
+/* ── HERO (unchanged — Figma 16:5) ── */
 .ux-hero {
   position: relative; min-height: 810px; overflow: hidden;
   display: flex; align-items: center; justify-content: center; text-align: center;
@@ -58,101 +41,227 @@
 .uxh-stat-l { font-family: var(--font-body); font-weight: 500; font-size: clamp(15px, 1.5vw, 22px); color: #d5d5d5; margin-top: 4px; }
 .ux-btn-light { box-shadow: 0 10px 30px rgba(0,0,0,.4); }
 
-/* ── WHY UX MATTERS ── */
+/* ── Shared lead paragraph (gadgeon voice) ── */
+.ux-lead {
+  font-family: var(--font-head); font-weight: 400;
+  font-size: clamp(15px, 1.5vw, 19px); color: var(--body-col);
+  line-height: 1.6; max-width: 760px; margin: 18px auto 0;
+}
+.ux-lead.light { color: rgba(240,240,240,.75); }
+
+/* ── Pills (shared) ── */
+.ux-pills { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+.ux-pill {
+  font-size: 12.5px; font-weight: 700; color: var(--primary);
+  background: var(--bg-light); border: 1px solid var(--border);
+  border-radius: 30px; padding: 5px 13px; white-space: nowrap;
+}
+.ux-pill.dark {
+  color: rgba(255,255,255,.85); background: rgba(255,255,255,.07);
+  border-color: rgba(255,255,255,.16);
+}
+
+/* ══ WHY UX MATTERS ══════════════════════════════ */
 .ux-why { background: #fff; }
-.ux-why-stats {
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px;
-  max-width: var(--maxw); margin: 64px auto 56px;
+.uxw-stats {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  border: 1px solid var(--border); border-radius: 18px; overflow: hidden;
+  background: var(--bg-light);
+  max-width: var(--maxw); margin: 0 auto 40px;
 }
-.uxw-stat-v { font-family: var(--font-body); font-weight: 700; font-size: clamp(30px, 3vw, 44px); }
-.uxw-stat-l { font-family: var(--font-body); font-weight: 600; font-size: 15px; color: #525252; line-height: 1.45; margin-top: 8px; }
-.ux-narrative {
-  max-width: 940px; margin: 0 auto 56px; padding: 36px clamp(24px, 4vw, 48px);
-  background: var(--bg-light); border-radius: 18px; border: 1px solid var(--border);
-}
-.ux-narrative p {
-  font-family: var(--font-body); font-weight: 500; font-size: clamp(15px, 1.5vw, 18px);
-  color: var(--body-col); line-height: 1.7; text-align: center;
-}
-.ux-cards3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: var(--maxw); margin: 0 auto; }
-.ux-footnote { font-size: 12px; color: #929292; margin-top: 28px; }
+.uxw-stat { padding: 34px 22px; text-align: center; border-right: 1px solid var(--border); }
+.uxw-stat:last-child { border-right: none; }
+.uxw-stat-v { font-weight: 800; font-size: clamp(30px, 3vw, 42px); }
+.uxw-stat-l { font-size: 14px; font-weight: 600; color: var(--body-col); line-height: 1.45; margin-top: 8px; }
 
-/* ── Flat card pattern (process/why) — Figma card spec ── */
-.ux-card { padding: 28px; text-align: center; }
-.ux-card-t { font-family: var(--font-body); font-weight: 600; font-size: 24px; color: #1a1a1a; line-height: 1.25; margin: 0 0 14px; }
-.ux-card-b { font-family: var(--font-body); font-weight: 500; font-size: 18px; color: #525252; line-height: 1.5; margin: 0 0 22px; }
-.ux-card-tags {
-  font-family: var(--font-body); font-weight: 700; font-size: 12px; color: #3f3f3f;
-  letter-spacing: 2px; text-transform: uppercase; line-height: 1.6;
-  padding: 14px 0; margin: 0;
-  border-top: 1px dashed #c9c9c9; border-bottom: 1px dashed #c9c9c9;
+.uxw-narrative {
+  position: relative; overflow: hidden; max-width: var(--maxw); margin: 0 auto 40px;
+  background: var(--dark); border-radius: 18px; padding: clamp(28px, 4vw, 48px);
 }
-
-/* ── PROCESS (gradient band) ── */
-.ux-process { background: linear-gradient(180deg, #edebe9 34.73%, #f5f3f2 72.43%); }
-.ux-steps {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px;
-  max-width: var(--maxw); margin: 72px auto 0; counter-reset: step;
+.uxw-narrative::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse 560px 300px at 12% 80%, rgba(244,121,32,.14) 0%, transparent 55%),
+    radial-gradient(ellipse 520px 280px at 88% 20%, rgba(49,130,252,.12) 0%, transparent 55%);
 }
-.ux-step { position: relative; background: transparent; }
-.ux-step-n {
-  font-family: var(--font-head); font-weight: 800; font-size: 15px;
-  color: #fff; background: linear-gradient(135deg, var(--grad-a), var(--grad-b) 55%, var(--grad-c));
-  width: 38px; height: 38px; border-radius: 50%;
-  display: flex; align-items: center; justify-content: center; margin: 0 auto 18px;
-}
-.ux-deliv { list-style: none; margin: 16px 0 0; padding: 0; display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; }
-.ux-deliv li {
-  font-family: var(--font-body); font-weight: 600; font-size: 12.5px; color: var(--primary);
-  background: #fff; border: 1px solid var(--border); border-radius: 30px; padding: 5px 13px;
+.uxw-narrative p {
+  position: relative; font-family: var(--font-head); font-weight: 400;
+  font-size: clamp(15px, 1.6vw, 19px); color: rgba(240,240,240,.88);
+  line-height: 1.75; text-align: center; margin: 0;
 }
 
-/* ── SUCCESS STORIES ── */
-.ux-stories { background: #fff; }
-.ux-cases { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; max-width: var(--maxw); margin: 64px auto 0; }
-.ux-case {
-  background: #fff; border: 1px solid var(--border); border-radius: 16px; overflow: hidden;
-  text-align: left; padding-bottom: 20px; transition: transform .25s, box-shadow .25s;
+.uxw-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: var(--maxw); margin: 0 auto; }
+.uxw-card {
+  background: var(--bg-light); border: 1px solid var(--border); border-radius: 16px;
+  padding: 30px 26px; text-align: center; transition: transform .25s, box-shadow .25s;
 }
-.ux-case:hover { transform: translateY(-5px); box-shadow: 0 18px 44px rgba(44,29,68,.12); }
-.ux-case-img { height: 260px; overflow: hidden; margin: 14px 14px 20px; border-radius: 10px; }
-.ux-case-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
-.ux-case:hover .ux-case-img img { transform: scale(1.05); }
-.ux-case-t { font-family: var(--font-body); font-weight: 700; font-size: 21px; color: #1a1a1a; margin: 0 22px 12px; line-height: 1.3; }
-.ux-case-meta { font-family: var(--font-body); font-size: 15px; margin: 0 22px 6px; color: #525252; }
-.ux-case-meta span { color: #737373; }
-.ux-case-meta strong { font-weight: 700; color: #1a1a1a; }
+.uxw-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(44,29,68,.12); }
+.uxw-ico {
+  width: 46px; height: 46px; margin: 0 auto 16px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center; color: #fff;
+  background: linear-gradient(135deg, var(--grad-a), var(--grad-b) 55%, var(--grad-c));
+}
+.uxw-ico svg { width: 24px; height: 24px; }
+.uxw-card h3 { font-weight: 700; font-size: 19px; color: var(--primary); margin: 0 0 10px; }
+.uxw-card p { font-size: 14.5px; font-weight: 500; color: var(--body-col); line-height: 1.55; margin: 0 0 18px; }
+.ux-footnote { text-align: center; font-size: 12px; color: var(--muted); margin-top: 26px; }
 
-/* ── BLOGS ── */
+/* ══ PROCESS — dark scroll timeline ══════════════ */
+.ux-process { position: relative; overflow: hidden; background: var(--dark); }
+.ux-process::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse 800px 400px at 12% 25%, rgba(244,121,32,.10) 0%, transparent 55%),
+    radial-gradient(ellipse 700px 380px at 88% 65%, rgba(49,130,252,.10) 0%, transparent 55%),
+    radial-gradient(ellipse 520px 300px at 50% 100%, rgba(199,86,217,.08) 0%, transparent 55%);
+}
+.ux-process::after {
+  content: ''; position: absolute; inset: 0; pointer-events: none; opacity: .05;
+  background-image: radial-gradient(circle, rgba(255,255,255,.9) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+.ux-process > * { position: relative; z-index: 1; }
+
+.tl { position: relative; max-width: 1080px; margin: 64px auto 0; padding: 10px 0 30px; }
+.tl-line {
+  position: absolute; top: 0; bottom: 0; left: 50%; width: 2px;
+  transform: translateX(-50%); background: rgba(255,255,255,.12); border-radius: 2px;
+}
+.tl-fill {
+  position: absolute; top: 0; left: 0; width: 100%; height: 0;
+  background: linear-gradient(180deg, var(--grad-a), var(--grad-b), var(--grad-c));
+  border-radius: 2px; transition: height .25s ease-out;
+}
+.tl-step {
+  position: relative; display: grid; grid-template-columns: 1fr 1fr;
+  gap: 0 56px; padding: 26px 0;
+}
+.tl-dot {
+  position: absolute; left: 50%; top: 34px; transform: translateX(-50%);
+  width: 44px; height: 44px; border-radius: 50%; z-index: 2;
+  background: #17102b; border: 2px solid rgba(255,255,255,.18);
+  display: flex; align-items: center; justify-content: center;
+  transition: border-color .3s, box-shadow .3s, background .3s;
+}
+.tl-dot span { font-family: var(--font-head); font-weight: 800; font-size: 16px; color: rgba(255,255,255,.55); transition: color .3s; }
+.tl-dot.lit {
+  background: linear-gradient(135deg, var(--grad-a), var(--grad-b) 55%, var(--grad-c));
+  border-color: transparent; box-shadow: 0 0 24px rgba(199,86,217,.5);
+}
+.tl-dot.lit span { color: #fff; }
+
+.tl-card {
+  grid-column: 1; text-align: right; justify-self: end; max-width: 470px;
+  background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1);
+  backdrop-filter: blur(10px); border-radius: 16px; padding: 26px 28px;
+  transition: transform .25s, border-color .25s, background .25s;
+}
+.tl-card:hover { transform: translateY(-4px); border-color: rgba(199,86,217,.45); background: rgba(255,255,255,.08); }
+.tl-step.flip .tl-card { grid-column: 2; text-align: left; justify-self: start; }
+.tl-step .ux-pills { justify-content: flex-end; }
+.tl-step.flip .ux-pills { justify-content: flex-start; }
+
+.tl-phase { font-family: var(--font-head); font-weight: 800; font-size: 13px; letter-spacing: .12em; text-transform: uppercase; margin-bottom: 8px; }
+.tl-card h3 { font-weight: 800; font-size: 21px; color: #fff; margin: 0 0 10px; }
+.tl-body { font-size: 14.5px; font-weight: 500; color: rgba(225,225,235,.82); line-height: 1.6; margin: 0 0 14px; }
+.tl-ai {
+  display: inline-flex; align-items: center; gap: 8px; margin-bottom: 16px;
+  font-size: 12.5px; font-weight: 700; color: #ffb37e;
+  background: rgba(244,121,32,.12); border: 1px solid rgba(244,121,32,.35);
+  border-radius: 30px; padding: 6px 14px;
+}
+.tl-ai svg { width: 14px; height: 14px; flex-shrink: 0; }
+.tl-outcome { font-size: 13.5px; font-weight: 700; color: rgba(255,255,255,.92); margin: 14px 0 0; }
+
+/* ══ SUCCESS STORIES ═════════════════════════════ */
+.ux-stories { background: var(--bg-light); }
+.ux-filters { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; max-width: 900px; margin: 0 auto 40px; }
+.ux-filter {
+  font-family: var(--font-body); font-size: 14px; font-weight: 700; color: var(--primary);
+  background: #fff; border: 1.5px solid var(--border); border-radius: 40px;
+  padding: 9px 20px; cursor: pointer; transition: border-color .2s, background .2s, color .2s;
+}
+.ux-filter:hover { border-color: rgba(199,86,217,.5); }
+.ux-filter.on {
+  color: #fff; border-color: transparent;
+  background: linear-gradient(90deg, var(--grad-a), var(--grad-b) 55%, var(--grad-c));
+}
+.uxc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: var(--maxw); margin: 0 auto; }
+.uxc-card {
+  background: #fff; border-radius: 18px; overflow: hidden; text-align: left;
+  border: 1px solid var(--border); transition: transform .25s, box-shadow .25s;
+}
+.uxc-card:hover { transform: translateY(-5px); box-shadow: 0 18px 44px rgba(44,29,68,.12); }
+.uxc-img { position: relative; height: 200px; overflow: hidden; }
+.uxc-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
+.uxc-card:hover .uxc-img img { transform: scale(1.06); }
+.uxc-img.ico { background: linear-gradient(150deg, #1a0f35 0%, #241548 55%, #16204a 100%); display: flex; align-items: center; justify-content: center; }
+.uxc-img.ico img {
+  width: 84px; height: 84px; object-fit: contain;
+  filter: invert(1) brightness(1.6); opacity: .9;
+}
+.uxc-card:hover .uxc-img.ico img { transform: scale(1.1); }
+.uxc-body { padding: 22px 22px 24px; }
+.uxc-body h3 { font-weight: 800; font-size: 17px; color: var(--primary); line-height: 1.4; margin: 0 0 10px; }
+.uxc-body p { font-size: 14px; font-weight: 500; color: var(--body-col); line-height: 1.55; margin: 0 0 16px; }
+
+/* ══ BLOGS ═══════════════════════════════════════ */
 .ux-blogs { background: #fff; }
-.ux-blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; max-width: var(--maxw); margin: 64px auto 0; }
-.ux-blog { text-align: left; }
-.ux-blog-img { height: 215px; border-radius: 10px; overflow: hidden; margin-bottom: 20px; }
-.ux-blog-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
-.ux-blog:hover .ux-blog-img img { transform: scale(1.05); }
-.ux-blog-t { font-family: var(--font-body); font-weight: 600; font-size: 20px; color: #2b2b2b; line-height: 1.35; margin: 0 0 14px; }
-.ux-blog-by { font-family: var(--font-body); font-weight: 600; font-size: 15px; color: #1a1a1a; margin: 0 0 6px; }
-.ux-blog-meta { font-family: var(--font-body); font-size: 14px; color: #929292; margin: 0; }
-
-/* ── TESTIMONIAL ── */
-.ux-words { background: #f4f6fa; }
-.ux-testi { max-width: 806px; margin: 40px auto 0; padding: 32px 40px; }
-.ux-testi-q { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 36px; color: #ef3b60; margin: 0 0 16px; letter-spacing: 2px; }
-.ux-testi-quote { font-family: 'Inter', sans-serif; font-size: 22px; color: #1a1a1a; line-height: 1.4; margin: 0 0 16px; }
-.ux-testi-name { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 14px; color: #1a1a1a; margin: 0 0 6px; }
-.ux-testi-role { font-family: 'Inter', sans-serif; font-size: 12px; color: #666; margin: 0 0 4px; }
-
-/* ── CLOSING CTA ── */
-.ux-cta { background: #fff; border-top: 1px solid var(--border); }
-
-/* ── RESPONSIVE ── */
-@media (max-width: 1000px) {
-  .ux-why-stats { grid-template-columns: repeat(2, 1fr); }
-  .ux-cards3, .ux-steps, .ux-cases, .ux-blog-grid { grid-template-columns: repeat(2, 1fr); }
+.uxb-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: var(--maxw); margin: 0 auto; }
+.uxb-card {
+  background: var(--bg-light); border-radius: 18px; overflow: hidden; text-align: left;
+  transition: transform .25s, box-shadow .25s;
 }
-@media (max-width: 680px) {
+.uxb-card:hover { transform: translateY(-5px); box-shadow: 0 18px 44px rgba(44,29,68,.12); }
+.uxb-img { position: relative; height: 200px; overflow: hidden; }
+.uxb-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
+.uxb-card:hover .uxb-img img { transform: scale(1.06); }
+.uxb-body { padding: 22px 22px 24px; }
+.uxb-body h3 { font-weight: 800; font-size: 16.5px; color: var(--primary); line-height: 1.4; margin: 0 0 12px; }
+.uxb-by { font-size: 14px; font-weight: 700; color: var(--primary); margin: 0 0 4px; }
+.uxb-meta { font-size: 13px; font-weight: 500; color: var(--muted); margin: 0 0 14px; }
+.uxb-link { font-size: 14px; font-weight: 700; color: var(--grad-a); text-decoration: none; cursor: pointer; }
+.uxb-link:hover { opacity: .75; }
+
+/* ══ TESTIMONIALS — dark ═════════════════════════ */
+.ux-words { position: relative; overflow: hidden; background: var(--dark); }
+.ux-words::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse 700px 400px at 82% 18%, rgba(244,121,32,.10) 0%, transparent 55%),
+    radial-gradient(ellipse 600px 350px at 12% 72%, rgba(49,130,252,.09) 0%, transparent 55%);
+}
+.ux-words .ins-inner { position: relative; z-index: 1; max-width: var(--maxw); margin: 0 auto; }
+.uxt-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 52px; }
+.uxt-card {
+  position: relative; display: flex; flex-direction: column; text-align: left;
+  background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1);
+  backdrop-filter: blur(10px); border-radius: 16px; padding: 26px;
+  transition: transform .25s, border-color .25s;
+}
+.uxt-card:hover { transform: translateY(-4px); border-color: rgba(244,121,32,.4); }
+.uxt-quote-mark { font-family: var(--font-head); font-weight: 800; font-size: 44px; line-height: 1; margin-bottom: 8px; }
+.uxt-quote { font-size: 15.5px; font-weight: 500; color: rgba(235,235,245,.92); line-height: 1.6; margin: 0 0 18px; flex: 1; }
+.uxt-name { font-weight: 800; font-size: 15px; color: #fff; margin: 0 0 3px; }
+.uxt-role { font-size: 13px; font-weight: 500; color: rgba(220,220,230,.65); margin: 0 0 14px; }
+.uxt-card .itag { align-self: flex-start; margin-bottom: 0; }
+
+/* ══ RESPONSIVE ══════════════════════════════════ */
+@media (max-width: 1000px) {
+  .uxw-stats { grid-template-columns: repeat(2, 1fr); }
+  .uxw-stat:nth-child(2n) { border-right: none; }
+  .uxw-stat:nth-child(-n+2) { border-bottom: 1px solid var(--border); }
+  .uxw-cards, .uxc-grid, .uxb-grid, .uxt-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 720px) {
   .ux-hero { min-height: 640px; }
-  .ux-why-stats, .ux-cards3, .ux-steps, .ux-cases, .ux-blog-grid { grid-template-columns: 1fr; }
-  .ux-cases { max-width: 440px; }
-  .ux-testi { padding: 24px 16px; }
+  .uxw-stats, .uxw-cards, .uxc-grid, .uxb-grid, .uxt-grid { grid-template-columns: 1fr; }
+  .uxw-stat { border-right: none; border-bottom: 1px solid var(--border); }
+  .uxw-stat:last-child { border-bottom: none; }
+  /* timeline: single column, rail on the left */
+  .tl-line { left: 21px; transform: none; }
+  .tl-step, .tl-step.flip { grid-template-columns: 1fr; padding-left: 58px; }
+  .tl-card, .tl-step.flip .tl-card { grid-column: 1; text-align: left; justify-self: stretch; max-width: none; }
+  .tl-step .ux-pills, .tl-step.flip .ux-pills { justify-content: flex-start; }
+  .tl-dot { left: 21px; }
 }

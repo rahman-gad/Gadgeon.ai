@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Urbanist:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,600;1,700&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css?v=3" />
-  <link rel="stylesheet" href="ux.css?v=1" />
+  <link rel="stylesheet" href="ux.css?v=2" />
 </head>
 <body class="ux-page">
 
@@ -65,62 +65,79 @@
 </section>
 
 <!-- ══ WHY UX MATTERS ══════════════════════════════ -->
-<section class="ux-section ux-why" id="why">
-  <div class="ux-eyebrow">-- Business Impact --</div>
-  <h2 class="ux-h2"><span class="dim">Why</span> UX Matters</h2>
-  <p class="ux-sub">Good design isn't a line item — it's a growth lever. Every dollar spent on UX compounds into faster development, higher conversion, and customers who stick around.</p>
+<section class="section ux-why" id="why">
+  <div class="section-hdr">
+    <div class="eyebrow center">Business Impact</div>
+    <h2 class="stitle">Why <span class="grad-txt">UX Matters</span></h2>
+    <p class="ux-lead">Good design isn't a line item — it's a growth lever. Every dollar spent on UX compounds into faster development, higher conversion, and customers who stick around.</p>
+  </div>
 
-  <div class="ux-why-stats" id="uxWhyStats"></div>
+  <div class="uxw-stats" id="uxWhyStats"></div>
 
-  <div class="ux-narrative reveal">
+  <div class="uxw-narrative reveal">
     <p id="uxWhyNarrative"></p>
   </div>
 
-  <div class="ux-cards3" id="uxWhyCards"></div>
+  <div class="uxw-cards" id="uxWhyCards"></div>
   <p class="ux-footnote" id="uxWhyFootnote"></p>
 </section>
 
-<!-- ══ AI-DRIVEN UX PROCESS ════════════════════════ -->
-<section class="ux-section ux-process" id="process">
-  <div class="ux-eyebrow">-- UX Strategy --</div>
-  <h2 class="ux-h2"><span class="dim">Our AI Driven UX</span> Process</h2>
-  <p class="ux-sub">We help enterprises solve real business problems by blending UX expertise, AI-driven intelligence, and strategic design to create impactful digital products and experiences.</p>
+<!-- ══ AI-DRIVEN UX PROCESS — scroll timeline ══════ -->
+<section class="section ux-process" id="process">
+  <div class="section-hdr">
+    <div class="eyebrow center light">UX Strategy</div>
+    <h2 class="stitle white">Our <span class="grad-txt">AI-Driven UX</span> Process</h2>
+    <p class="ux-lead light">Five phases, one loop: human expertise steering AI acceleration — so insight arrives in hours, and design decisions are validated before engineering commits.</p>
+  </div>
 
-  <div class="ux-steps" id="uxProcess"></div>
+  <div class="tl" id="uxTimeline">
+    <div class="tl-line" aria-hidden="true"><span class="tl-fill" id="tlFill"></span></div>
+  </div>
 </section>
 
-<!-- ══ SUCCESS STORIES ═════════════════════════════ -->
-<section class="ux-section ux-stories" id="cases">
-  <div class="ux-eyebrow">-- Projects --</div>
-  <h2 class="ux-h2"><span class="dim">UX Success Stories from Enterprises</span><br />Across Industries</h2>
-  <p class="ux-sub">Real client stories where strategy and creativity come together to solve challenges.</p>
+<!-- ══ SUCCESS STORIES (filterable) ════════════════ -->
+<section class="section ux-stories" id="cases">
+  <div class="section-hdr">
+    <div class="eyebrow center">Client Stories</div>
+    <h2 class="stitle">UX Success Stories<br /><span class="grad-txt">Across Industries</span></h2>
+    <p class="ux-lead">Real engagements where strategy, creativity, and AI-accelerated research come together — pick your industry.</p>
+  </div>
 
-  <div class="ux-cases" id="uxCases"></div>
+  <div class="ux-filters" id="uxFilters" role="tablist" aria-label="Filter case studies by industry"></div>
+  <div class="uxc-grid" id="uxCases"></div>
 </section>
 
 <!-- ══ BLOGS ═══════════════════════════════════════ -->
-<section class="ux-section ux-blogs" id="insights">
-  <div class="ux-eyebrow">-- Expert Analysis --</div>
-  <h2 class="ux-h2"><span class="dim">Our Latest</span> UX Blogs</h2>
-  <p class="ux-sub">Read insightful articles from UI UX design experts!</p>
+<section class="section ux-blogs" id="insights">
+  <div class="section-hdr">
+    <div class="eyebrow center">Expert Analysis</div>
+    <h2 class="stitle">Our Latest <span class="grad-txt">UX Insights</span></h2>
+    <p class="ux-lead">Field notes from designers shipping enterprise products every week.</p>
+  </div>
 
-  <div class="ux-blog-grid" id="uxBlogs"></div>
+  <div class="uxb-grid" id="uxBlogs"></div>
 </section>
 
-<!-- ══ TESTIMONIAL ═════════════════════════════════ -->
-<section class="ux-section ux-words" id="words">
-  <div class="ux-eyebrow">-- Client Trust --</div>
-  <h2 class="ux-h2"><span class="dim">Words From</span> Client</h2>
-  <p class="ux-sub">Hear what our esteemed clients have to say about their experience working with Gadgeon UX.</p>
-
-  <div id="uxTestimonial"></div>
+<!-- ══ TESTIMONIALS ════════════════════════════════ -->
+<section class="section ux-words" id="words">
+  <div class="ins-inner">
+    <div class="section-hdr">
+      <div class="eyebrow center light">Client Trust</div>
+      <h2 class="stitle white">Words From <span class="grad-txt">Our Clients</span></h2>
+      <p class="ux-lead light">Hear what our esteemed clients have to say about working with Gadgeon UX.</p>
+    </div>
+    <div class="uxt-grid" id="uxTestimonial"></div>
+  </div>
 </section>
 
 <!-- ══ CLOSING CTA ═════════════════════════════════ -->
-<section class="ux-section ux-cta" id="build">
-  <h2 class="cta-title">Ready to make UX<br /><span class="grad-txt">your growth engine?</span></h2>
-  <p class="cta-p">Tell us about your product challenge. We'll show you how AI-driven UX gets you there faster.</p>
-  <a href="#" class="btn btn-dark" data-open-contact>Let's Talk</a>
+<section class="section cta-section ux-cta" id="build">
+  <div class="cta-hdr">
+    <div class="eyebrow center">Let's Build Together</div>
+    <h2 class="cta-title">Ready to make UX<br /><span class="grad-txt">your growth engine?</span></h2>
+    <p class="cta-p">Tell us about your product challenge. We'll show you how AI-driven UX gets you there faster.</p>
+    <a href="#" class="btn btn-outline" data-open-contact>Talk to Our UX Team</a>
+  </div>
 </section>
 
 <!-- ══ FOOTER (shared) ═════════════════════════════ -->
@@ -254,7 +271,7 @@
 </a>
 
 <script src="script.js?v=3"></script>
-<script src="ux-content.js?v=1"></script>
+<script src="ux-content.js?v=2"></script>
 <script src="chatbot.js?v=5"></script>
 </body>
 </html>
