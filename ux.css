@@ -1,0 +1,158 @@
+/* ══════════════════════════════════════════════════
+   Gadgeon UX Practice — page styles (Figma 16:5)
+   Loads after styles.css; shares nav/footer/modal/chatbot.
+   ══════════════════════════════════════════════════ */
+
+/* ── Section shell & shared type ── */
+.ux-section { padding: clamp(72px, 9vw, 130px) 24px; text-align: center; }
+.ux-eyebrow {
+  font-family: var(--font-body); font-weight: 700; font-size: 18px;
+  color: #737373; margin-bottom: 18px;
+}
+.ux-h2 {
+  font-family: var(--font-body); font-weight: 700;
+  font-size: clamp(34px, 4.4vw, 60px); line-height: 1.18;
+  color: #1a1a1a; margin: 0 0 22px;
+}
+.ux-h2 .dim { color: #929292; }
+.ux-sub {
+  font-family: var(--font-body); font-weight: 700;
+  font-size: clamp(17px, 1.8vw, 22px); color: #737373; line-height: 1.5;
+  max-width: 680px; margin: 0 auto;
+}
+
+/* ── HERO (810px dark, photo + 50% black overlay) ── */
+.ux-hero {
+  position: relative; min-height: 810px; overflow: hidden;
+  display: flex; align-items: center; justify-content: center; text-align: center;
+  padding: 140px 24px 80px;
+}
+.ux-hero-media {
+  position: absolute; inset: 0;
+  background: url('assets/ux-hero-bg.jpg') center/cover no-repeat #14100e;
+}
+.ux-hero-overlay { position: absolute; inset: 0; background: rgba(0,0,0,.5); }
+.ux-hero-inner { position: relative; z-index: 1; max-width: 1100px; }
+.ux-hero h1 {
+  font-family: var(--font-head); font-weight: 800;
+  font-size: clamp(34px, 4.4vw, 63px); line-height: normal; margin: 0 0 14px;
+}
+.ux-hero-sub {
+  font-family: var(--font-body); font-weight: 600;
+  font-size: clamp(26px, 3.75vw, 54px); color: #fff; line-height: 1.15; margin: 0 0 12px;
+}
+.ux-hero-sub2 {
+  font-family: var(--font-body); font-weight: 800;
+  font-size: clamp(20px, 3vw, 44px); color: rgba(255,255,255,.9); margin: 0 0 30px;
+}
+.ux-hero-body {
+  font-family: var(--font-body); font-weight: 600; font-size: clamp(15px, 1.4vw, 20px);
+  color: rgba(255,255,255,.8); line-height: 1.55; max-width: 978px; margin: 0 auto 60px;
+}
+.ux-hero-body strong { font-weight: 700; color: #fff; }
+.ux-hero-stats {
+  display: flex; justify-content: center; gap: clamp(40px, 10vw, 170px);
+  flex-wrap: wrap; margin-bottom: 48px;
+}
+.uxh-stat-v { font-family: var(--font-body); font-weight: 700; font-size: clamp(30px, 3vw, 44px); color: #fff; }
+.uxh-stat-l { font-family: var(--font-body); font-weight: 500; font-size: clamp(15px, 1.5vw, 22px); color: #d5d5d5; margin-top: 4px; }
+.ux-btn-light { box-shadow: 0 10px 30px rgba(0,0,0,.4); }
+
+/* ── WHY UX MATTERS ── */
+.ux-why { background: #fff; }
+.ux-why-stats {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px;
+  max-width: var(--maxw); margin: 64px auto 56px;
+}
+.uxw-stat-v { font-family: var(--font-body); font-weight: 700; font-size: clamp(30px, 3vw, 44px); }
+.uxw-stat-l { font-family: var(--font-body); font-weight: 600; font-size: 15px; color: #525252; line-height: 1.45; margin-top: 8px; }
+.ux-narrative {
+  max-width: 940px; margin: 0 auto 56px; padding: 36px clamp(24px, 4vw, 48px);
+  background: var(--bg-light); border-radius: 18px; border: 1px solid var(--border);
+}
+.ux-narrative p {
+  font-family: var(--font-body); font-weight: 500; font-size: clamp(15px, 1.5vw, 18px);
+  color: var(--body-col); line-height: 1.7; text-align: center;
+}
+.ux-cards3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: var(--maxw); margin: 0 auto; }
+.ux-footnote { font-size: 12px; color: #929292; margin-top: 28px; }
+
+/* ── Flat card pattern (process/why) — Figma card spec ── */
+.ux-card { padding: 28px; text-align: center; }
+.ux-card-t { font-family: var(--font-body); font-weight: 600; font-size: 24px; color: #1a1a1a; line-height: 1.25; margin: 0 0 14px; }
+.ux-card-b { font-family: var(--font-body); font-weight: 500; font-size: 18px; color: #525252; line-height: 1.5; margin: 0 0 22px; }
+.ux-card-tags {
+  font-family: var(--font-body); font-weight: 700; font-size: 12px; color: #3f3f3f;
+  letter-spacing: 2px; text-transform: uppercase; line-height: 1.6;
+  padding: 14px 0; margin: 0;
+  border-top: 1px dashed #c9c9c9; border-bottom: 1px dashed #c9c9c9;
+}
+
+/* ── PROCESS (gradient band) ── */
+.ux-process { background: linear-gradient(180deg, #edebe9 34.73%, #f5f3f2 72.43%); }
+.ux-steps {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px;
+  max-width: var(--maxw); margin: 72px auto 0; counter-reset: step;
+}
+.ux-step { position: relative; background: transparent; }
+.ux-step-n {
+  font-family: var(--font-head); font-weight: 800; font-size: 15px;
+  color: #fff; background: linear-gradient(135deg, var(--grad-a), var(--grad-b) 55%, var(--grad-c));
+  width: 38px; height: 38px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center; margin: 0 auto 18px;
+}
+.ux-deliv { list-style: none; margin: 16px 0 0; padding: 0; display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; }
+.ux-deliv li {
+  font-family: var(--font-body); font-weight: 600; font-size: 12.5px; color: var(--primary);
+  background: #fff; border: 1px solid var(--border); border-radius: 30px; padding: 5px 13px;
+}
+
+/* ── SUCCESS STORIES ── */
+.ux-stories { background: #fff; }
+.ux-cases { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; max-width: var(--maxw); margin: 64px auto 0; }
+.ux-case {
+  background: #fff; border: 1px solid var(--border); border-radius: 16px; overflow: hidden;
+  text-align: left; padding-bottom: 20px; transition: transform .25s, box-shadow .25s;
+}
+.ux-case:hover { transform: translateY(-5px); box-shadow: 0 18px 44px rgba(44,29,68,.12); }
+.ux-case-img { height: 260px; overflow: hidden; margin: 14px 14px 20px; border-radius: 10px; }
+.ux-case-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
+.ux-case:hover .ux-case-img img { transform: scale(1.05); }
+.ux-case-t { font-family: var(--font-body); font-weight: 700; font-size: 21px; color: #1a1a1a; margin: 0 22px 12px; line-height: 1.3; }
+.ux-case-meta { font-family: var(--font-body); font-size: 15px; margin: 0 22px 6px; color: #525252; }
+.ux-case-meta span { color: #737373; }
+.ux-case-meta strong { font-weight: 700; color: #1a1a1a; }
+
+/* ── BLOGS ── */
+.ux-blogs { background: #fff; }
+.ux-blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; max-width: var(--maxw); margin: 64px auto 0; }
+.ux-blog { text-align: left; }
+.ux-blog-img { height: 215px; border-radius: 10px; overflow: hidden; margin-bottom: 20px; }
+.ux-blog-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
+.ux-blog:hover .ux-blog-img img { transform: scale(1.05); }
+.ux-blog-t { font-family: var(--font-body); font-weight: 600; font-size: 20px; color: #2b2b2b; line-height: 1.35; margin: 0 0 14px; }
+.ux-blog-by { font-family: var(--font-body); font-weight: 600; font-size: 15px; color: #1a1a1a; margin: 0 0 6px; }
+.ux-blog-meta { font-family: var(--font-body); font-size: 14px; color: #929292; margin: 0; }
+
+/* ── TESTIMONIAL ── */
+.ux-words { background: #f4f6fa; }
+.ux-testi { max-width: 806px; margin: 40px auto 0; padding: 32px 40px; }
+.ux-testi-q { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 36px; color: #ef3b60; margin: 0 0 16px; letter-spacing: 2px; }
+.ux-testi-quote { font-family: 'Inter', sans-serif; font-size: 22px; color: #1a1a1a; line-height: 1.4; margin: 0 0 16px; }
+.ux-testi-name { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 14px; color: #1a1a1a; margin: 0 0 6px; }
+.ux-testi-role { font-family: 'Inter', sans-serif; font-size: 12px; color: #666; margin: 0 0 4px; }
+
+/* ── CLOSING CTA ── */
+.ux-cta { background: #fff; border-top: 1px solid var(--border); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1000px) {
+  .ux-why-stats { grid-template-columns: repeat(2, 1fr); }
+  .ux-cards3, .ux-steps, .ux-cases, .ux-blog-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 680px) {
+  .ux-hero { min-height: 640px; }
+  .ux-why-stats, .ux-cards3, .ux-steps, .ux-cases, .ux-blog-grid { grid-template-columns: 1fr; }
+  .ux-cases { max-width: 440px; }
+  .ux-testi { padding: 24px 16px; }
+}

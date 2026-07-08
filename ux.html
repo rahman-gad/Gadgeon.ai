@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gadgeon UX Practice — AI-Powered UX Transformation</title>
+  <meta name="description" content="Gadgeon UX Practice: from traditional UX to AI-driven UX. Research synthesized in hours, experiences validated early, and development aligned before coding begins." />
+  <meta property="og:title" content="Gadgeon UX Practice — AI-Powered UX Transformation" />
+  <meta property="og:description" content="From Traditional UX to AI-Driven UX. Delivering insights faster, designing smarter." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/ux-hero-bg.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Urbanist:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,600;1,700&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=3" />
+  <link rel="stylesheet" href="ux.css?v=1" />
+</head>
+<body class="ux-page">
+
+<!-- ══ NAVBAR (shared pattern; UX Services active) ══ -->
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo" aria-label="Gadgeon.ai home">
+      <img src="assets/brand-logo.png" alt="Gadgeon.ai — by Gadgeon Systems" />
+    </a>
+
+    <nav class="nav-links" id="navLinks" aria-label="Primary">
+      <a href="index.html">Home</a>
+      <a href="index.html#solutions">Solutions</a>
+      <a href="index.html#industries">Industries</a>
+      <a href="index.html#cases">Case Studies</a>
+      <a href="index.html#insights">Insights</a>
+      <a href="ux.html" class="active">UX Services</a>
+      <a href="#" class="btn btn-dark btn-sm nav-cta-mobile" data-open-contact>Let's Talk</a>
+    </nav>
+
+    <a href="#" class="btn btn-dark btn-sm nav-cta" data-open-contact>Let's Talk</a>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ══ HERO (Figma 16:5 — dark, photo + 50% overlay) ══ -->
+<section class="ux-hero" id="home">
+  <div class="ux-hero-media" aria-hidden="true"></div>
+  <div class="ux-hero-overlay" aria-hidden="true"></div>
+  <div class="ux-hero-inner">
+    <h1 class="grad-txt">AI-Powered&nbsp; UX Transformation</h1>
+    <p class="ux-hero-sub">From Traditional UX to AI-Driven UX.</p>
+    <p class="ux-hero-sub2">Delivering Insights Faster, Designing Smarter</p>
+    <p class="ux-hero-body">
+      Accelerate enterprise UX with AI. Research synthesized in hours, experiences validated early, and
+      development aligned before coding begins. Trusted across <strong>Telecom</strong>, <strong>IoT</strong>,
+      <strong>Healthcare</strong>, <strong>BFSI</strong>, <strong>Logistics</strong>,
+      <strong>Manufacturing</strong> and <strong>Industry 4.0</strong>
+    </p>
+    <div class="ux-hero-stats" id="uxHeroStats"></div>
+    <div class="ux-hero-cta">
+      <a href="#" class="btn btn-dark ux-btn-light" data-open-contact>Talk to Our UX Team</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ WHY UX MATTERS ══════════════════════════════ -->
+<section class="ux-section ux-why" id="why">
+  <div class="ux-eyebrow">-- Business Impact --</div>
+  <h2 class="ux-h2"><span class="dim">Why</span> UX Matters</h2>
+  <p class="ux-sub">Good design isn't a line item — it's a growth lever. Every dollar spent on UX compounds into faster development, higher conversion, and customers who stick around.</p>
+
+  <div class="ux-why-stats" id="uxWhyStats"></div>
+
+  <div class="ux-narrative reveal">
+    <p id="uxWhyNarrative"></p>
+  </div>
+
+  <div class="ux-cards3" id="uxWhyCards"></div>
+  <p class="ux-footnote" id="uxWhyFootnote"></p>
+</section>
+
+<!-- ══ AI-DRIVEN UX PROCESS ════════════════════════ -->
+<section class="ux-section ux-process" id="process">
+  <div class="ux-eyebrow">-- UX Strategy --</div>
+  <h2 class="ux-h2"><span class="dim">Our AI Driven UX</span> Process</h2>
+  <p class="ux-sub">We help enterprises solve real business problems by blending UX expertise, AI-driven intelligence, and strategic design to create impactful digital products and experiences.</p>
+
+  <div class="ux-steps" id="uxProcess"></div>
+</section>
+
+<!-- ══ SUCCESS STORIES ═════════════════════════════ -->
+<section class="ux-section ux-stories" id="cases">
+  <div class="ux-eyebrow">-- Projects --</div>
+  <h2 class="ux-h2"><span class="dim">UX Success Stories from Enterprises</span><br />Across Industries</h2>
+  <p class="ux-sub">Real client stories where strategy and creativity come together to solve challenges.</p>
+
+  <div class="ux-cases" id="uxCases"></div>
+</section>
+
+<!-- ══ BLOGS ═══════════════════════════════════════ -->
+<section class="ux-section ux-blogs" id="insights">
+  <div class="ux-eyebrow">-- Expert Analysis --</div>
+  <h2 class="ux-h2"><span class="dim">Our Latest</span> UX Blogs</h2>
+  <p class="ux-sub">Read insightful articles from UI UX design experts!</p>
+
+  <div class="ux-blog-grid" id="uxBlogs"></div>
+</section>
+
+<!-- ══ TESTIMONIAL ═════════════════════════════════ -->
+<section class="ux-section ux-words" id="words">
+  <div class="ux-eyebrow">-- Client Trust --</div>
+  <h2 class="ux-h2"><span class="dim">Words From</span> Client</h2>
+  <p class="ux-sub">Hear what our esteemed clients have to say about their experience working with Gadgeon UX.</p>
+
+  <div id="uxTestimonial"></div>
+</section>
+
+<!-- ══ CLOSING CTA ═════════════════════════════════ -->
+<section class="ux-section ux-cta" id="build">
+  <h2 class="cta-title">Ready to make UX<br /><span class="grad-txt">your growth engine?</span></h2>
+  <p class="cta-p">Tell us about your product challenge. We'll show you how AI-driven UX gets you there faster.</p>
+  <a href="#" class="btn btn-dark" data-open-contact>Let's Talk</a>
+</section>
+
+<!-- ══ FOOTER (shared) ═════════════════════════════ -->
+<footer class="footer">
+  <div class="ft-top">
+    <div class="ft-brand">
+      <div class="ft-logo">gadgeon.ai</div>
+      <p>Enterprise platform engineering and AI for organisations that need it to actually work.</p>
+      <div class="socials">
+        <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
+        <a href="#" aria-label="X / Twitter"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23 12s0-3.5-.45-5.18a2.79 2.79 0 00-1.97-1.97C18.9 4.4 12 4.4 12 4.4s-6.9 0-8.58.45A2.79 2.79 0 001.45 6.82C1 8.5 1 12 1 12s0 3.5.45 5.18a2.79 2.79 0 001.97 1.97C5.1 19.6 12 19.6 12 19.6s6.9 0 8.58-.45a2.79 2.79 0 001.97-1.97C23 15.5 23 12 23 12zM9.75 15.02V8.98L15.5 12z"/></svg></a>
+      </div>
+    </div>
+    <div class="fcol">
+      <h4>Solutions</h4>
+      <ul>
+        <li><a href="index.html#solutions">Blueprint for Scale</a></li>
+        <li><a href="index.html#solutions">Build What Lasts</a></li>
+        <li><a href="index.html#solutions">Move to Cloud, Right</a></li>
+        <li><a href="index.html#solutions">Make Data Work</a></li>
+        <li><a href="ux.html">UX Services</a></li>
+      </ul>
+    </div>
+    <div class="fcol">
+      <h4>Industries</h4>
+      <ul>
+        <li><a href="index.html#industries">Telecom</a></li>
+        <li><a href="index.html#industries">IoT &amp; Devices</a></li>
+        <li><a href="index.html#industries">Healthcare</a></li>
+        <li><a href="index.html#industries">Enterprise SaaS</a></li>
+        <li><a href="index.html#industries">Data Services</a></li>
+      </ul>
+    </div>
+    <div class="fcol">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="index.html">About Gadgeon</a></li>
+        <li><a href="index.html#cases">Case Studies</a></li>
+        <li><a href="index.html#insights">Insights</a></li>
+        <li><a href="#" data-open-contact>Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="ft-bottom">
+    <span>© 2026 Gadgeon Systems Inc. All rights reserved.</span>
+    <div class="ft-regions"><span>India</span><span>USA</span><span>Europe</span><span>UAE</span></div>
+    <div class="ft-legal"><a href="#">Privacy Policy</a><a href="#">Terms</a></div>
+  </div>
+</footer>
+
+<!-- ══ CONTACT MODAL (shared — Figma 1986:1424 / 2219:7483) ══ -->
+<div class="modal" id="contactModal" aria-hidden="true">
+  <div class="modal-backdrop" data-close-contact></div>
+  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+
+    <div class="ct-head">
+      <h3 id="modalTitle">Get In Touch With Our <span class="grad-txt">AI Expert</span></h3>
+      <button class="ct-close" aria-label="Close" data-close-contact>
+        <img src="assets/ct-close.svg" alt="" />
+      </button>
+    </div>
+
+    <div class="ct-body" id="ctBody">
+      <div class="ct-panel">
+        <aside class="ct-side">
+          <h4>Contact Information</h4>
+          <p class="ct-side-sub">Fill up the form and our team will get back to you within 24 hrs</p>
+          <ul class="ct-items">
+            <li><img src="assets/ct-phone.svg" alt="" /><span>+021 3211234567</span></li>
+            <li><img src="assets/ct-mail.svg" alt="" /><span>Connect@gadgeon.ai</span></li>
+            <li><img src="assets/ct-location.svg" alt="" /><span>Level 12, Innovation T. SF, CA<br />94105, USA</span></li>
+          </ul>
+        </aside>
+
+        <form class="ct-form" id="contactForm" novalidate>
+          <div class="ct-field">
+            <label for="cf-name">Full Name *</label>
+            <input type="text" id="cf-name" name="name" placeholder="John Smith" required autocomplete="name" />
+            <span class="err" data-err-for="name"></span>
+          </div>
+          <div class="ct-field">
+            <label for="cf-email">Work Email *</label>
+            <input type="email" id="cf-email" name="email" placeholder="John@abcd.com" required autocomplete="email" />
+            <span class="err" data-err-for="email"></span>
+          </div>
+          <div class="ct-field">
+            <label for="cf-phone">Phone Number *</label>
+            <div class="ct-phone">
+              <span class="ct-code">
+                <select id="cf-code" name="code" aria-label="Country code">
+                  <option value="+91" selected>+91</option>
+                  <option value="+1">+1</option>
+                  <option value="+44">+44</option>
+                  <option value="+971">+971</option>
+                  <option value="+49">+49</option>
+                  <option value="+33">+33</option>
+                  <option value="+65">+65</option>
+                  <option value="+61">+61</option>
+                </select>
+                <img class="ct-chev" src="assets/ct-chevron.svg" alt="" />
+              </span>
+              <input type="tel" id="cf-phone" name="phone" placeholder="9496664777" required autocomplete="tel" />
+            </div>
+            <span class="err" data-err-for="phone"></span>
+          </div>
+          <div class="ct-field">
+            <label for="cf-msg">How can we help?</label>
+            <textarea id="cf-msg" name="message" placeholder="Tell us about your platform challenges."></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="ct-actions">
+        <button type="submit" form="contactForm" class="ct-submit">Submit</button>
+      </div>
+    </div>
+
+    <div class="ct-success" id="ctSuccess" hidden>
+      <div class="ct-panel ct-panel-success">
+        <img class="ct-success-icon" src="assets/ct-success.svg" alt="" />
+        <p class="ct-success-title">Submission Successful!</p>
+        <p class="ct-success-body">We have Received your message and&nbsp; one of our team members<br />will reach out within one business day.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<a href="#home" class="to-top" id="toTop" aria-label="Back to top">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</a>
+
+<script src="script.js?v=3"></script>
+<script src="ux-content.js?v=1"></script>
+<script src="chatbot.js?v=5"></script>
+</body>
+</html>
