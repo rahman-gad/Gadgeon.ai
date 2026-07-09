@@ -181,35 +181,6 @@ html:not(.js) .uxp::before { transform: scaleX(1); }
 .uxcmp.bad  .uxcmp-mark { background: rgba(229,72,77,.12); color: #e5484d; }
 .uxcmp.good .uxcmp-mark { background: rgba(74,175,81,.14); color: #4aaf51; }
 
-/* ── ROI mini-calculator ── */
-.uxroi {
-  position: relative; overflow: hidden; max-width: var(--maxw); margin: 40px auto 0;
-  background: var(--dark); border-radius: 18px; padding: clamp(28px, 4vw, 44px); text-align: center;
-}
-.uxroi::before {
-  content: ''; position: absolute; inset: 0; pointer-events: none;
-  background:
-    radial-gradient(ellipse 560px 300px at 15% 20%, rgba(49,130,252,.14) 0%, transparent 55%),
-    radial-gradient(ellipse 520px 300px at 85% 85%, rgba(244,121,32,.12) 0%, transparent 55%);
-}
-.uxroi > * { position: relative; z-index: 1; }
-.uxroi-h { font-family: var(--font-head); font-weight: 800; font-size: clamp(21px, 2.4vw, 28px); color: #fff; margin: 0 0 10px; }
-.uxroi-sub { font-size: 14.5px; font-weight: 500; color: rgba(230,230,240,.75); max-width: 640px; margin: 0 auto 28px; line-height: 1.55; }
-.uxroi-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; max-width: 760px; margin: 0 auto 26px; }
-.uxroi-field { display: flex; flex-direction: column; gap: 8px; text-align: left; }
-.uxroi-field span { font-size: 13px; font-weight: 600; color: rgba(255,255,255,.75); }
-.uxroi-field input {
-  font-family: var(--font-body); font-size: 16px; font-weight: 700; color: #fff;
-  background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.18);
-  border-radius: 10px; padding: 11px 14px; width: 100%;
-  transition: border-color .2s, box-shadow .2s;
-}
-.uxroi-field input:focus { outline: none; border-color: var(--grad-b); box-shadow: 0 0 0 3px rgba(199,86,217,.18); }
-.uxroi-out { margin: 6px 0 10px; }
-.uxroi-out-l { font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.6); margin-bottom: 6px; }
-.uxroi-out-v { font-family: var(--font-head); font-weight: 800; font-size: clamp(30px, 4vw, 48px); }
-.uxroi-note { font-size: 12px; color: rgba(255,255,255,.45); margin: 8px 0 0; }
-
 /* ══ PROCESS — dark scroll timeline ══════════════ */
 .ux-process { position: relative; overflow: hidden; background: var(--dark); }
 .ux-process::before {
@@ -357,9 +328,6 @@ html:not(.js) .uxp::before { transform: scaleX(1); }
   .uxw-stat:nth-child(-n+2) { border-bottom: 1px solid var(--border); }
   .uxc-grid, .uxb-grid, .uxt-grid { grid-template-columns: repeat(2, 1fr); }
   .uxw-pillars { grid-template-columns: 1fr; max-width: 620px; }
-}
-@media (max-width: 1000px) {
-  .uxroi-row { grid-template-columns: 1fr; max-width: 420px; }
 }
 @media (max-width: 720px) {
   .ux-hero { min-height: 640px; }

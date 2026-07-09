@@ -82,19 +82,6 @@ window.UX_CONTENT = {
     }
   },
 
-  roiCalc: {
-    heading: 'What could better UX be worth to you?',
-    sub: 'A conservative estimate — studies report 200–400% conversion lifts from well-designed interfaces. We model just +25%.',
-    lift: 0.25,
-    fields: [
-      { key: 'visitors', label: 'Monthly visitors / users', value: 50000, min: 100 },
-      { key: 'conv',     label: 'Conversion rate (%)',      value: 2,     min: 0.1, step: 0.1 },
-      { key: 'value',    label: 'Avg value per conversion ($)', value: 150, min: 1 }
-    ],
-    resultLabel: 'Potential additional revenue per year',
-    disclaimer: 'Illustrative estimate, not a guarantee — talk to us for a model based on your real funnel.'
-  },
-
   whyFootnote: '¹ Forrester (≈9,900% ROI) · ² Forrester Total Economic Impact · Other benchmarks: McKinsey Design Index, IBM Systems Sciences, Amazon/Econsultancy CX research',
 
   /* ── AI-Driven UX Process — scroll timeline ── */
@@ -324,42 +311,6 @@ window.UX_CONTENT = {
       card.appendChild(ul);
       cmp.appendChild(card);
     });
-  }
-
-  /* ROI mini-calculator */
-  var calc = document.getElementById('uxRoiCalc');
-  if (calc && C.roiCalc) {
-    var R = C.roiCalc;
-    calc.appendChild(el('h3', 'uxroi-h', esc(R.heading)));
-    calc.appendChild(el('p', 'uxroi-sub', esc(R.sub)));
-    var row = el('div', 'uxroi-row');
-    var inputs = {};
-    R.fields.forEach(function (f) {
-      var fld = el('label', 'uxroi-field');
-      fld.appendChild(el('span', null, esc(f.label)));
-      var inp = document.createElement('input');
-      inp.type = 'number'; inp.value = f.value; inp.min = f.min;
-      if (f.step) inp.step = f.step;
-      inputs[f.key] = inp;
-      fld.appendChild(inp);
-      row.appendChild(fld);
-    });
-    calc.appendChild(row);
-    var out = el('div', 'uxroi-out');
-    out.appendChild(el('div', 'uxroi-out-l', esc(R.resultLabel)));
-    var val = el('div', 'uxroi-out-v grad-txt', '$0');
-    out.appendChild(val);
-    calc.appendChild(out);
-    calc.appendChild(el('p', 'uxroi-note', esc(R.disclaimer)));
-    function compute() {
-      var v = parseFloat(inputs.visitors.value) || 0;
-      var c = (parseFloat(inputs.conv.value) || 0) / 100;
-      var a = parseFloat(inputs.value.value) || 0;
-      var extra = v * 12 * c * a * R.lift;
-      val.textContent = '+$' + Math.round(extra).toLocaleString('en-US') + ' / year';
-    }
-    Object.keys(inputs).forEach(function (k) { inputs[k].addEventListener('input', compute); });
-    compute();
   }
 
   var wf = document.getElementById('uxWhyFootnote');
