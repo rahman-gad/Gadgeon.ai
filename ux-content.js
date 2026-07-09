@@ -20,32 +20,44 @@ window.UX_CONTENT = {
   whyNarrative: "Design isn't just how it looks — it's how the business performs. McKinsey research shows design-led companies deliver 2x the revenue growth of industry peers, while poor usability drives 88% of users away for good — often before they ever reach checkout. At Gadgeon, we treat UX as a measurable investment: catching friction before it ships, validating flows before engineering commits, and tying every design decision back to conversion, retention, and cost.",
 
   whyPillars: [
-    { key: 'financial', icon: 'dollar', title: 'Direct Financial Impacts',
+    { key: 'financial', icon: 'dollar', kicker: 'Financial Impact',
+      subtitle: 'Turns UX into measurable revenue',
       items: [
         { icon: 'userplus', title: 'Lower customer acquisition cost',
-          body: 'Intuitive design lets users self-onboard, cutting reliance on costly high-touch sales demos.' },
+          metric: '-34%', mlabel: 'CAC reduction',
+          body: 'Frictionless self-onboarding cuts reliance on costly high-touch sales demos.' },
         { icon: 'heart', title: 'Higher customer lifetime value',
-          body: 'Frictionless products embed into daily workflows, making customers resistant to switching.' },
+          metric: '+2.4x', mlabel: 'Retention uplift',
+          body: 'Intuitive products embed into daily workflows, making customers resistant to switching.' },
         { icon: 'headset', title: 'Reduced operational costs',
-          body: 'Clear navigation and error-prevention cut support tickets and engineering overhead.' }
+          metric: '-58%', mlabel: 'Support volume',
+          body: 'Clear navigation cuts support tickets and engineering overhead significantly.' }
       ] },
-    { key: 'workforce', icon: 'briefcase', title: 'Workforce & Operational Efficiency',
+    { key: 'workforce', icon: 'briefcase', kicker: 'Workforce Efficiency',
+      subtitle: 'Removes the hidden tax on your people',
       items: [
         { icon: 'bulb', title: 'Zero-training onboarding',
-          body: 'Predictive, self-explanatory interfaces remove the employee training bottleneck.' },
+          metric: '-80%', mlabel: 'Onboarding time',
+          body: 'Self-explanatory interfaces remove the employee training bottleneck entirely.' },
         { icon: 'shieldcheck', title: 'Minimized human error',
+          metric: '-61%', mlabel: 'Input error rate',
           body: 'Smart input fields and visual guardrails protect data integrity across the org.' },
         { icon: 'clock', title: 'Accelerated task completion',
-          body: 'Optimized workflows shave seconds off repetitive tasks, unlocking thousands of hours at scale.' }
+          metric: '3,200+', mlabel: 'Hours saved / year',
+          body: 'Streamlined workflows unlock thousands of saved hours at scale.' }
       ] },
-    { key: 'strategic', icon: 'target', title: 'Core Strategic Advantages in 2026',
+    { key: 'strategic', icon: 'target', kicker: 'Strategic Advantage',
+      subtitle: 'Builds competitive moats that last',
       items: [
         { icon: 'chart', title: 'Data-driven agility',
+          metric: '4.7x', mlabel: 'Decision speed',
           body: 'Clean UX drives accurate data entry, giving leaders reliable analytics for fast decisions.' },
         { icon: 'devices', title: 'Seamless multi-platform continuity',
-          body: 'Fluid experience across mobile, desktop, and tablet prevents drop-off when users switch screens.' },
+          metric: '99.2%', mlabel: 'Cross-device score',
+          body: 'Fluid experience across mobile and desktop prevents drop-off when users switch.' },
         { icon: 'badge', title: 'Immediate brand trust',
-          body: 'Visual polish and predictable interactions signal security, earning credibility with tech-savvy buyers.' }
+          metric: '+41%', mlabel: 'Brand trust score',
+          body: 'Visual polish and predictable interactions earn credibility with tech-savvy buyers.' }
       ] }
   ],
 
@@ -221,25 +233,78 @@ window.UX_CONTENT = {
   });
   var wn = document.getElementById('uxWhyNarrative');
   if (wn) wn.textContent = C.whyNarrative;
-  /* Impact pillars — 3 color-coded categories */
+  /* Impact pillars — 3 color-coded categories with animated metrics */
   var wp = document.getElementById('uxWhyPillars');
-  if (wp && C.whyPillars) C.whyPillars.forEach(function (p) {
-    var col = el('article', 'uxp ' + p.key + ' reveal');
-    var head = el('div', 'uxp-head');
-    head.appendChild(el('span', 'uxp-ico', ICONS[p.icon] || ''));
-    head.appendChild(el('h3', null, esc(p.title)));
-    col.appendChild(head);
-    p.items.forEach(function (it) {
-      var card = el('div', 'uxp-item');
-      card.appendChild(el('span', 'uxp-item-ico', ICONS[it.icon] || ''));
-      var txt = el('div', 'uxp-item-txt');
-      txt.appendChild(el('h4', null, esc(it.title)));
-      txt.appendChild(el('p', null, esc(it.body)));
-      card.appendChild(txt);
-      col.appendChild(card);
+  if (wp && C.whyPillars) {
+    C.whyPillars.forEach(function (p) {
+      var col = el('article', 'uxp ' + p.key + ' reveal');
+      var head = el('div', 'uxp-head');
+      head.appendChild(el('span', 'uxp-ico', ICONS[p.icon] || ''));
+      var ht = el('div', 'uxp-head-txt');
+      ht.appendChild(el('span', 'uxp-kicker', esc(p.kicker)));
+      ht.appendChild(el('h3', null, esc(p.subtitle)));
+      head.appendChild(ht);
+      col.appendChild(head);
+      p.items.forEach(function (it) {
+        var card = el('div', 'uxp-item reveal');
+        card.appendChild(el('span', 'uxp-item-ico', ICONS[it.icon] || ''));
+        var txt = el('div', 'uxp-item-txt');
+        var row = el('div', 'uxp-item-row');
+        row.appendChild(el('h4', null, esc(it.title)));
+        var met = el('div', 'uxp-metric');
+        var mv = el('span', 'uxp-metric-v', esc(it.metric));
+        mv.setAttribute('data-metric', it.metric);
+        met.appendChild(mv);
+        met.appendChild(el('span', 'uxp-metric-l', esc(it.mlabel)));
+        row.appendChild(met);
+        txt.appendChild(row);
+        txt.appendChild(el('p', null, esc(it.body)));
+        card.appendChild(txt);
+        col.appendChild(card);
+      });
+      wp.appendChild(col);
     });
-    wp.appendChild(col);
-  });
+
+    /* Metric count-up: parses "+2.4x", "-58%", "3,200+", "99.2%" */
+    function animateMetric(elm) {
+      var raw = elm.getAttribute('data-metric');
+      var m = raw.match(/^([+\-]?)([\d,]+(?:\.\d+)?)(.*)$/);
+      if (!m) return;
+      var sign = m[1], suffix = m[3];
+      var target = parseFloat(m[2].replace(/,/g, ''));
+      var decimals = (m[2].split('.')[1] || '').length;
+      var grouped = m[2].indexOf(',') > -1;
+      var dur = 1300, start = null;
+      function fmt(n) {
+        var s = n.toFixed(decimals);
+        if (grouped) s = Number(s).toLocaleString('en-US', { minimumFractionDigits: decimals });
+        return sign + s + suffix;
+      }
+      if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        elm.textContent = fmt(target);
+        return;
+      }
+      function step(ts) {
+        if (!start) start = ts;
+        var p = Math.min((ts - start) / dur, 1);
+        var eased = 1 - Math.pow(1 - p, 3);
+        elm.textContent = fmt(target * eased);
+        if (p < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+      // Guarantee the exact final value even if rAF is throttled/suspended.
+      setTimeout(function () { elm.textContent = fmt(target); }, dur + 300);
+    }
+    var metricEls = wp.querySelectorAll('.uxp-metric-v');
+    if ('IntersectionObserver' in window) {
+      var mo = new IntersectionObserver(function (entries, obs) {
+        entries.forEach(function (en) {
+          if (en.isIntersecting) { animateMetric(en.target); obs.unobserve(en.target); }
+        });
+      }, { threshold: 0.5 });
+      metricEls.forEach(function (e) { mo.observe(e); });
+    }
+  }
   /* Poor vs Great UX comparison */
   var cmp = document.getElementById('uxWhyCompare');
   if (cmp && C.whyCompare) {

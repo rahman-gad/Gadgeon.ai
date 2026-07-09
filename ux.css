@@ -99,37 +99,62 @@
 .uxp::before {
   content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
   background: var(--pcolor);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform .9s cubic-bezier(.2,.8,.3,1) .2s;
 }
+.uxp.in::before { transform: scaleX(1); }
+.js .uxp:not(.in)::before { transform: scaleX(0); }
+html:not(.js) .uxp::before { transform: scaleX(1); }
 .uxp.financial  { --pcolor: var(--grad-a); --ptint: rgba(244,121,32,.09);  --pborder: rgba(244,121,32,.35); }
 .uxp.workforce  { --pcolor: var(--grad-b); --ptint: rgba(199,86,217,.09);  --pborder: rgba(199,86,217,.35); }
 .uxp.strategic  { --pcolor: var(--grad-c); --ptint: rgba(49,130,252,.09);  --pborder: rgba(49,130,252,.35); }
 
-.uxp-head { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
+.uxp-head { display: flex; align-items: center; gap: 13px; margin-bottom: 18px; }
 .uxp-ico {
-  width: 44px; height: 44px; flex-shrink: 0; border-radius: 12px;
+  width: 46px; height: 46px; flex-shrink: 0; border-radius: 13px;
   display: flex; align-items: center; justify-content: center;
   background: var(--ptint); color: var(--pcolor);
+  transition: transform .3s;
 }
+.uxp:hover .uxp-ico { transform: scale(1.08) rotate(-4deg); }
 .uxp-ico svg { width: 22px; height: 22px; }
-.uxp-head h3 { font-weight: 800; font-size: 18px; color: var(--primary); line-height: 1.25; margin: 0; }
+.uxp-head-txt { min-width: 0; }
+.uxp-kicker {
+  display: block; font-size: 11.5px; font-weight: 800;
+  letter-spacing: .12em; text-transform: uppercase;
+  color: var(--pcolor); margin-bottom: 3px;
+}
+.uxp-head-txt h3 { font-weight: 800; font-size: 17px; color: var(--primary); line-height: 1.3; margin: 0; }
 
 .uxp-item {
   display: flex; align-items: flex-start; gap: 12px;
   background: var(--bg-light); border: 1px solid var(--border); border-radius: 12px;
   padding: 14px; margin-bottom: 12px;
-  transition: transform .2s, box-shadow .2s, border-color .2s, background .2s;
+  transition: transform .2s, box-shadow .2s, border-color .2s, background .2s,
+              opacity .6s ease;
 }
 .uxp-item:hover {
   transform: translateY(-2px); background: #fff;
   border-color: var(--pborder); box-shadow: 0 10px 26px rgba(44,29,68,.10);
 }
+.uxp-item:hover .uxp-item-ico { transform: scale(1.12); }
 .uxp-item-ico {
   width: 34px; height: 34px; flex-shrink: 0; border-radius: 9px; margin-top: 2px;
   display: flex; align-items: center; justify-content: center;
   background: var(--ptint); color: var(--pcolor);
+  transition: transform .25s;
 }
 .uxp-item-ico svg { width: 17px; height: 17px; }
-.uxp-item h4 { font-weight: 700; font-size: 15px; color: var(--primary); line-height: 1.3; margin: 0 0 4px; }
+.uxp-item-txt { flex: 1; min-width: 0; }
+.uxp-item-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; margin-bottom: 5px; }
+.uxp-item h4 { font-weight: 700; font-size: 14.5px; color: var(--primary); line-height: 1.3; margin: 0; }
+.uxp-metric { text-align: right; flex-shrink: 0; }
+.uxp-metric-v {
+  display: block; font-family: var(--font-head); font-weight: 800;
+  font-size: 19px; line-height: 1.1; color: var(--pcolor);
+  font-variant-numeric: tabular-nums;
+}
+.uxp-metric-l { display: block; font-size: 10.5px; font-weight: 600; color: var(--muted); margin-top: 2px; white-space: nowrap; }
 .uxp-item p { font-size: 13.5px; font-weight: 500; color: var(--body-col); line-height: 1.5; margin: 0; }
 
 .ux-footnote { text-align: center; font-size: 12px; color: var(--muted); margin-top: 26px; }
