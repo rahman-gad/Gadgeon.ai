@@ -10,15 +10,6 @@ window.UX_CONTENT = {
     { value: '8+',   label: 'Industries' }
   ],
 
-  whyStats: [
-    { value: '$100',     label: 'Returned for every $1 invested in UX¹' },
-    { value: '200–400%', label: 'Conversion lift from well-designed interfaces' },
-    { value: '50%',      label: 'Less dev rework when usability is validated early' },
-    { value: '10.8%',    label: 'Higher 3-year revenue retention from continuous research²' }
-  ],
-
-  whyNarrative: "Design isn't just how it looks — it's how the business performs. McKinsey research shows design-led companies deliver 2x the revenue growth of industry peers, while poor usability drives 88% of users away for good — often before they ever reach checkout. At Gadgeon, we treat UX as a measurable investment: catching friction before it ships, validating flows before engineering commits, and tying every design decision back to conversion, retention, and cost.",
-
   whyPillars: [
     { key: 'financial', icon: 'dollar', kicker: 'Financial Impact',
       subtitle: 'Turns UX into measurable revenue',
@@ -60,29 +51,6 @@ window.UX_CONTENT = {
           body: 'Visual polish and predictable interactions earn credibility with tech-savvy buyers.' }
       ] }
   ],
-
-  whyCompare: {
-    bad: {
-      title: 'The Cost of Poor UX',
-      items: [
-        '88% of users never return after a bad experience',
-        'Up to 70% of enterprise software goes under-adopted when UX is an afterthought',
-        'Fixing a usability problem after development costs up to 100x more',
-        'Half of engineering time burns on avoidable rework'
-      ]
-    },
-    good: {
-      title: 'The Return on Great UX',
-      items: [
-        'Design-led companies grow revenue 2x faster than industry peers',
-        '$100 returned for every $1 invested in UX',
-        'CX leaders outperform laggards by ~80% on key business KPIs',
-        '415% ROI from embedding usability research early'
-      ]
-    }
-  },
-
-  whyFootnote: '¹ Forrester (≈9,900% ROI) · ² Forrester Total Economic Impact · Other benchmarks: McKinsey Design Index, IBM Systems Sciences, Amazon/Econsultancy CX research',
 
   /* ── AI-Driven UX Process — scroll timeline ── */
   process: [
@@ -210,17 +178,7 @@ window.UX_CONTENT = {
     hs.appendChild(d);
   });
 
-  /* Why UX Matters */
-  var ws = document.getElementById('uxWhyStats');
-  if (ws) C.whyStats.forEach(function (s) {
-    var d = el('div', 'uxw-stat reveal');
-    d.appendChild(el('div', 'uxw-stat-v grad-txt', esc(s.value)));
-    d.appendChild(el('div', 'uxw-stat-l', esc(s.label)));
-    ws.appendChild(d);
-  });
-  var wn = document.getElementById('uxWhyNarrative');
-  if (wn) wn.textContent = C.whyNarrative;
-  /* Impact pillars — 3 color-coded categories with animated metrics */
+  /* Why UX Matters — impact pillars (3 color-coded categories, animated metrics) */
   var wp = document.getElementById('uxWhyPillars');
   if (wp && C.whyPillars) {
     C.whyPillars.forEach(function (p) {
@@ -292,30 +250,6 @@ window.UX_CONTENT = {
       metricEls.forEach(function (e) { mo.observe(e); });
     }
   }
-  /* Poor vs Great UX comparison */
-  var cmp = document.getElementById('uxWhyCompare');
-  if (cmp && C.whyCompare) {
-    [['bad', C.whyCompare.bad], ['good', C.whyCompare.good]].forEach(function (pair) {
-      var kind = pair[0], data = pair[1];
-      var card = el('article', 'uxcmp ' + kind + ' reveal');
-      card.appendChild(el('h3', null, esc(data.title)));
-      var ul = el('ul');
-      data.items.forEach(function (it) {
-        var li = el('li');
-        li.appendChild(el('span', 'uxcmp-mark', kind === 'bad'
-          ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>'
-          : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>'));
-        li.appendChild(el('span', null, esc(it)));
-        ul.appendChild(li);
-      });
-      card.appendChild(ul);
-      cmp.appendChild(card);
-    });
-  }
-
-  var wf = document.getElementById('uxWhyFootnote');
-  if (wf) wf.textContent = C.whyFootnote;
-
   /* Process timeline */
   var tl = document.getElementById('uxTimeline');
   if (tl) {

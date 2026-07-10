@@ -61,35 +61,6 @@
   border-color: rgba(255,255,255,.16);
 }
 
-/* ══ WHY UX MATTERS ══════════════════════════════ */
-.ux-why { background: #fff; }
-.uxw-stats {
-  display: grid; grid-template-columns: repeat(4, 1fr);
-  border: 1px solid var(--border); border-radius: 18px; overflow: hidden;
-  background: var(--bg-light);
-  max-width: var(--maxw); margin: 0 auto 40px;
-}
-.uxw-stat { padding: 34px 22px; text-align: center; border-right: 1px solid var(--border); }
-.uxw-stat:last-child { border-right: none; }
-.uxw-stat-v { font-weight: 800; font-size: clamp(30px, 3vw, 42px); }
-.uxw-stat-l { font-size: 14px; font-weight: 600; color: var(--body-col); line-height: 1.45; margin-top: 8px; }
-
-.uxw-narrative {
-  position: relative; overflow: hidden; max-width: var(--maxw); margin: 0 auto 40px;
-  background: var(--dark); border-radius: 18px; padding: clamp(28px, 4vw, 48px);
-}
-.uxw-narrative::before {
-  content: ''; position: absolute; inset: 0; pointer-events: none;
-  background:
-    radial-gradient(ellipse 560px 300px at 12% 80%, rgba(244,121,32,.14) 0%, transparent 55%),
-    radial-gradient(ellipse 520px 280px at 88% 20%, rgba(49,130,252,.12) 0%, transparent 55%);
-}
-.uxw-narrative p {
-  position: relative; font-family: var(--font-head); font-weight: 400;
-  font-size: clamp(15px, 1.6vw, 19px); color: rgba(240,240,240,.88);
-  line-height: 1.75; text-align: center; margin: 0;
-}
-
 /* ── Impact pillars (3 color-coded categories) ── */
 .uxw-pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: var(--maxw); margin: 0 auto; }
 .uxp {
@@ -158,28 +129,6 @@ html:not(.js) .uxp::before { transform: scaleX(1); }
 .uxp-item p { font-size: 13.5px; font-weight: 500; color: var(--body-col); line-height: 1.5; margin: 0; }
 
 .ux-footnote { text-align: center; font-size: 12px; color: var(--muted); margin-top: 26px; }
-
-/* ── Poor vs Great UX comparison ── */
-.uxcmp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; max-width: var(--maxw); margin: 0 auto 40px; }
-.uxcmp {
-  border-radius: 16px; padding: 30px 28px; text-align: left;
-  border: 1px solid var(--border); transition: transform .25s, box-shadow .25s;
-}
-.uxcmp:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(44,29,68,.10); }
-.uxcmp.bad  { background: #fff7f5; border-color: rgba(229,72,77,.22); }
-.uxcmp.good { background: #f4fbf5; border-color: rgba(74,175,81,.28); }
-.uxcmp h3 { font-weight: 800; font-size: 20px; color: var(--primary); margin: 0 0 18px; }
-.uxcmp ul { list-style: none; margin: 0; padding: 0; }
-.uxcmp li {
-  display: flex; align-items: flex-start; gap: 12px;
-  font-size: 14.5px; font-weight: 500; color: var(--body-col); line-height: 1.5;
-  padding: 9px 0; border-bottom: 1px dashed rgba(44,29,68,.08);
-}
-.uxcmp li:last-child { border-bottom: none; }
-.uxcmp-mark { width: 22px; height: 22px; flex-shrink: 0; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-top: 1px; }
-.uxcmp-mark svg { width: 12px; height: 12px; }
-.uxcmp.bad  .uxcmp-mark { background: rgba(229,72,77,.12); color: #e5484d; }
-.uxcmp.good .uxcmp-mark { background: rgba(74,175,81,.14); color: #4aaf51; }
 
 /* ══ PROCESS — dark scroll timeline ══════════════ */
 .ux-process { position: relative; overflow: hidden; background: var(--dark); }
@@ -323,17 +272,12 @@ html:not(.js) .uxp::before { transform: scaleX(1); }
 
 /* ══ RESPONSIVE ══════════════════════════════════ */
 @media (max-width: 1000px) {
-  .uxw-stats { grid-template-columns: repeat(2, 1fr); }
-  .uxw-stat:nth-child(2n) { border-right: none; }
-  .uxw-stat:nth-child(-n+2) { border-bottom: 1px solid var(--border); }
   .uxc-grid, .uxb-grid, .uxt-grid { grid-template-columns: repeat(2, 1fr); }
   .uxw-pillars { grid-template-columns: 1fr; max-width: 620px; }
 }
 @media (max-width: 720px) {
   .ux-hero { min-height: 640px; }
-  .uxw-stats, .uxw-pillars, .uxc-grid, .uxb-grid, .uxt-grid, .uxcmp-grid { grid-template-columns: 1fr; }
-  .uxw-stat { border-right: none; border-bottom: 1px solid var(--border); }
-  .uxw-stat:last-child { border-bottom: none; }
+  .uxw-pillars, .uxc-grid, .uxb-grid, .uxt-grid { grid-template-columns: 1fr; }
   /* timeline: single column, rail on the left */
   .tl-line { left: 21px; transform: none; }
   .tl-step, .tl-step.flip { grid-template-columns: 1fr; padding-left: 58px; }
