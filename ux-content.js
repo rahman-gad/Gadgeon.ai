@@ -484,29 +484,85 @@ window.UX_CONTENT = {
     n.innerHTML = ICONS[n.getAttribute('data-icon')] || '';
   });
 
-  /* Why UX Matters — "What good UX turns into" transformation flow */
+  /* Why UX Matters — "What good UX turns into" transformation flow.
+     A connected diagram: inputs converge into a central hub, then radiate
+     to outcomes. Connectors are SVG bezier paths recomputed from the real
+     DOM layout, so it stays accurate at any width. */
   var fl = document.getElementById('uxFlow');
   if (fl && C.flow) {
     var F = C.flow;
     fl.appendChild(el('div', 'uxflow-title', esc(F.title)));
-    var row = el('div', 'uxflow-row');
-    function cluster(items, kind) {
-      var c = el('div', 'uxflow-col ' + kind);
+    var stage = el('div', 'uxflow-stage');
+    var SVGNS = 'http://www.w3.org/2000/svg';
+    var svg = document.createElementNS(SVGNS, 'svg');
+    svg.setAttribute('class', 'uxflow-links');
+    svg.innerHTML = '<defs><linearGradient id="uxflowGrad" x1="0" y1="0" x2="1" y2="0">'
+      + '<stop offset="0" stop-color="#f47920"/><stop offset=".5" stop-color="#c756d9"/>'
+      + '<stop offset="1" stop-color="#3182fc"/></linearGradient></defs>';
+    stage.appendChild(svg);
+
+    function side(items, kind) {
+      var s = el('div', 'uxflow-side ' + kind);
       items.forEach(function (it, i) {
-        var chip = el('div', 'uxflow-chip reveal');
-        chip.style.transitionDelay = (i * 0.08) + 's';
-        chip.appendChild(el('span', 'uxflow-ico', ICONS[it.icon] || ''));
-        chip.appendChild(el('span', 'uxflow-lbl', esc(it.label)));
-        c.appendChild(chip);
+        var node = el('div', 'uxflow-node reveal');
+        node.style.transitionDelay = (0.1 + i * 0.09) + 's';
+        var dot = el('span', 'uxflow-dot', ICONS[it.icon] || '');
+        var lbl = el('span', 'uxflow-lbl', esc(it.label));
+        if (kind === 'in') { node.appendChild(lbl); node.appendChild(dot); }
+        else { node.appendChild(dot); node.appendChild(lbl); }
+        s.appendChild(node);
       });
-      return c;
+      return s;
     }
-    row.appendChild(cluster(F.inputs, 'in'));
-    var mid = el('div', 'uxflow-mid reveal');
-    mid.appendChild(el('span', 'uxflow-arrow', ICONS.arrow));
-    row.appendChild(mid);
-    row.appendChild(cluster(F.outputs, 'out'));
-    fl.appendChild(row);
+    var inSide = side(F.inputs, 'in');
+    var hub = el('div', 'uxflow-hub reveal');
+    hub.appendChild(el('span', 'uxflow-arrow', ICONS.arrow));
+    var outSide = side(F.outputs, 'out');
+    stage.appendChild(inSide);
+    stage.appendChild(hub);
+    stage.appendChild(outSide);
+    fl.appendChild(stage);
+
+    var inNodes = inSide.querySelectorAll('.uxflow-node');
+    var outNodes = outSide.querySelectorAll('.uxflow-node');
+    function curve(a, b) {
+      var mx = (a.x + b.x) / 2;
+      return 'M' + a.x + ',' + a.y + ' C' + mx + ',' + a.y + ' ' + mx + ',' + b.y + ' ' + b.x + ',' + b.y;
+    }
+    function drawLinks() {
+      if (getComputedStyle(svg).display === 'none') return;
+      var sb = stage.getBoundingClientRect();
+      if (!sb.width) return;
+      svg.setAttribute('viewBox', '0 0 ' + sb.width + ' ' + sb.height);
+      var hb = hub.getBoundingClientRect();
+      var midY = hb.top - sb.top + hb.height / 2;
+      var hubL = { x: hb.left - sb.left + 4, y: midY };
+      var hubR = { x: hb.right - sb.left - 4, y: midY };
+      var d = '';
+      inNodes.forEach(function (n) {
+        var r = n.getBoundingClientRect();
+        d += curve({ x: r.right - sb.left, y: r.top - sb.top + r.height / 2 }, hubL);
+        d += '|';
+      });
+      outNodes.forEach(function (n) {
+        var r = n.getBoundingClientRect();
+        d += curve(hubR, { x: r.left - sb.left, y: r.top - sb.top + r.height / 2 });
+        d += '|';
+      });
+      var defs = svg.querySelector('defs');
+      svg.innerHTML = '';
+      svg.appendChild(defs);
+      d.split('|').filter(Boolean).forEach(function (p) {
+        svg.insertAdjacentHTML('beforeend',
+          '<path class="uxflow-link-base" d="' + p + '"/><path class="uxflow-link-flow" d="' + p + '"/>');
+      });
+    }
+    if ('ResizeObserver' in window) new ResizeObserver(drawLinks).observe(stage);
+    window.addEventListener('resize', drawLinks, { passive: true });
+    drawLinks();
+    requestAnimationFrame(drawLinks);
+    setTimeout(drawLinks, 350);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(drawLinks);
   }
 
   /* Benefits for the business — numbered list */
