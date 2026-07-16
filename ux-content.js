@@ -10,29 +10,31 @@ window.UX_CONTENT = {
     { value: '8+',   label: 'Industries' }
   ],
 
-  /* One headline metric + two supporting stats per pillar — no prose. */
-  whyPillars: [
-    { key: 'financial', icon: 'dollar', kicker: 'Financial Impact',
-      subtitle: 'UX that shows up on the balance sheet.',
-      items: [
-        { metric: '+2.4x', mlabel: 'Customer lifetime value' },
-        { metric: '-34%',  mlabel: 'Acquisition cost' },
-        { metric: '-58%',  mlabel: 'Support volume' }
-      ] },
-    { key: 'workforce', icon: 'briefcase', kicker: 'Workforce Efficiency',
-      subtitle: 'Less friction for the people who use it daily.',
-      items: [
-        { metric: '-80%',   mlabel: 'Onboarding time' },
-        { metric: '-61%',   mlabel: 'Input errors' },
-        { metric: '3,200+', mlabel: 'Hours saved / year' }
-      ] },
-    { key: 'strategic', icon: 'target', kicker: 'Strategic Advantage',
-      subtitle: 'Advantages competitors can’t easily copy.',
-      items: [
-        { metric: '4.7x',  mlabel: 'Decision speed' },
-        { metric: '+41%',  mlabel: 'Brand trust' },
-        { metric: '99.2%', mlabel: 'Cross-device continuity' }
-      ] }
+  /* "What good UX turns into" — the transformation flow */
+  flow: {
+    title: 'What good UX turns into',
+    inputs: [
+      { icon: 'check',       label: 'Easy to use' },
+      { icon: 'shieldcheck', label: 'Builds trust' },
+      { icon: 'gift',        label: 'Delivers value' }
+    ],
+    outputs: [
+      { icon: 'smile', label: 'Happy users' },
+      { icon: 'chart', label: 'More business' },
+      { icon: 'heart', label: 'Stronger brand' }
+    ]
+  },
+
+  /* Benefits for the business — where UX shows up on the P&L */
+  bizBenefits: [
+    { title: 'Higher conversion rate',    body: 'Turn more visitors into paying customers.' },
+    { title: 'Lower acquisition cost',    body: 'Convert more of the traffic you already pay for.' },
+    { title: 'Increased retention',       body: 'Happy users return more often and spend more.' },
+    { title: 'Reduced support costs',     body: 'Fewer user errors mean fewer support tickets.' },
+    { title: 'Faster product adoption',   body: 'Users learn faster, need less training, see value sooner.' },
+    { title: 'Higher brand trust',        body: 'A professional experience builds credibility.' },
+    { title: 'Faster development',        body: 'Catch issues early, reduce rework, save time and cost.' },
+    { title: 'Better product–market fit', body: 'UX research helps you build what users actually need.' }
   ],
 
   /* Benefits for users — why people stay and come back */
@@ -462,7 +464,10 @@ window.UX_CONTENT = {
     devices:     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="14" height="11" rx="2"/><path d="M9 19h4"/><rect x="17" y="9" width="5" height="10" rx="1.5"/></svg>',
     badge:       '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M12 8l1.2 2.4 2.8.4-2 2 .5 2.7-2.5-1.3-2.5 1.3.5-2.7-2-2 2.8-.4z"/></svg>',
     smile:       '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>',
-    star:        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.1 8.6 22 9.3 17 14.1 18.2 21 12 17.6 5.8 21 7 14.1 2 9.3 8.9 8.6"/></svg>'
+    star:        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.1 8.6 22 9.3 17 14.1 18.2 21 12 17.6 5.8 21 7 14.1 2 9.3 8.9 8.6"/></svg>',
+    check:       '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>',
+    gift:        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>',
+    arrow:       '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>'
   };
 
   /* Hero stats (hero untouched otherwise) */
@@ -474,84 +479,60 @@ window.UX_CONTENT = {
     hs.appendChild(d);
   });
 
-  /* Why UX Matters — impact pillars (3 color-coded categories, animated metrics) */
-  var wp = document.getElementById('uxWhyPillars');
-  if (wp && C.whyPillars) {
-    function stat(it, cls) {
-      var s = el('div', cls);
-      var v = el('span', 'uxp-metric-v', esc(it.metric));
-      v.setAttribute('data-metric', it.metric);
-      s.appendChild(v);
-      s.appendChild(el('span', 'uxp-metric-l', esc(it.mlabel)));
-      return s;
-    }
-    C.whyPillars.forEach(function (p) {
-      var col = el('article', 'uxp ' + p.key + ' reveal');
-      var head = el('div', 'uxp-head');
-      head.appendChild(el('span', 'uxp-ico', ICONS[p.icon] || ''));
-      var ht = el('div', 'uxp-head-txt');
-      ht.appendChild(el('span', 'uxp-kicker', esc(p.kicker)));
-      ht.appendChild(el('h3', null, esc(p.subtitle)));
-      head.appendChild(ht);
-      col.appendChild(head);
-      col.appendChild(stat(p.items[0], 'uxp-hero'));
-      var mini = el('div', 'uxp-mini');
-      p.items.slice(1).forEach(function (it) { mini.appendChild(stat(it, 'uxp-stat')); });
-      col.appendChild(mini);
-      wp.appendChild(col);
-    });
+  /* Section header icons (data-icon → inline SVG) */
+  document.querySelectorAll('[data-icon]').forEach(function (n) {
+    n.innerHTML = ICONS[n.getAttribute('data-icon')] || '';
+  });
 
-    /* Metric count-up: parses "+2.4x", "-58%", "3,200+", "99.2%" */
-    function animateMetric(elm) {
-      var raw = elm.getAttribute('data-metric');
-      var m = raw.match(/^([+\-]?)([\d,]+(?:\.\d+)?)(.*)$/);
-      if (!m) return;
-      var sign = m[1], suffix = m[3];
-      var target = parseFloat(m[2].replace(/,/g, ''));
-      var decimals = (m[2].split('.')[1] || '').length;
-      var grouped = m[2].indexOf(',') > -1;
-      var dur = 1300, start = null;
-      function fmt(n) {
-        var s = n.toFixed(decimals);
-        if (grouped) s = Number(s).toLocaleString('en-US', { minimumFractionDigits: decimals });
-        return sign + s + suffix;
-      }
-      if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        elm.textContent = fmt(target);
-        return;
-      }
-      function step(ts) {
-        if (!start) start = ts;
-        var p = Math.min((ts - start) / dur, 1);
-        var eased = 1 - Math.pow(1 - p, 3);
-        elm.textContent = fmt(target * eased);
-        if (p < 1) requestAnimationFrame(step);
-      }
-      requestAnimationFrame(step);
-      // Guarantee the exact final value even if rAF is throttled/suspended.
-      setTimeout(function () { elm.textContent = fmt(target); }, dur + 300);
+  /* Why UX Matters — "What good UX turns into" transformation flow */
+  var fl = document.getElementById('uxFlow');
+  if (fl && C.flow) {
+    var F = C.flow;
+    fl.appendChild(el('div', 'uxflow-title', esc(F.title)));
+    var row = el('div', 'uxflow-row');
+    function cluster(items, kind) {
+      var c = el('div', 'uxflow-col ' + kind);
+      items.forEach(function (it, i) {
+        var chip = el('div', 'uxflow-chip reveal');
+        chip.style.transitionDelay = (i * 0.08) + 's';
+        chip.appendChild(el('span', 'uxflow-ico', ICONS[it.icon] || ''));
+        chip.appendChild(el('span', 'uxflow-lbl', esc(it.label)));
+        c.appendChild(chip);
+      });
+      return c;
     }
-    var metricEls = wp.querySelectorAll('.uxp-metric-v');
-    if ('IntersectionObserver' in window) {
-      var mo = new IntersectionObserver(function (entries, obs) {
-        entries.forEach(function (en) {
-          if (en.isIntersecting) { animateMetric(en.target); obs.unobserve(en.target); }
-        });
-      }, { threshold: 0.5 });
-      metricEls.forEach(function (e) { mo.observe(e); });
-    }
+    row.appendChild(cluster(F.inputs, 'in'));
+    var mid = el('div', 'uxflow-mid reveal');
+    mid.appendChild(el('span', 'uxflow-arrow', ICONS.arrow));
+    row.appendChild(mid);
+    row.appendChild(cluster(F.outputs, 'out'));
+    fl.appendChild(row);
   }
 
-  /* Benefits for users */
-  var ub = document.getElementById('uxUserBenefits');
-  if (ub && C.userBenefits) C.userBenefits.forEach(function (b) {
-    var card = el('div', 'uxu-item reveal');
-    card.appendChild(el('span', 'uxu-ico', ICONS[b.icon] || ''));
-    var txt = el('div', 'uxu-txt');
+  /* Benefits for the business — numbered list */
+  var bz = document.getElementById('uxBizBenefits');
+  if (bz && C.bizBenefits) C.bizBenefits.forEach(function (b, i) {
+    var item = el('div', 'uxbz-item reveal');
+    item.style.transitionDelay = Math.min(i, 8) * 0.05 + 's';
+    item.appendChild(el('span', 'uxbz-num', String(i + 1)));
+    var txt = el('div', 'uxbz-txt');
     txt.appendChild(el('h4', null, esc(b.title)));
     txt.appendChild(el('p', null, esc(b.body)));
-    card.appendChild(txt);
-    ub.appendChild(card);
+    item.appendChild(txt);
+    bz.appendChild(item);
+  });
+
+  /* Benefits for users — icon list */
+  var ub = document.getElementById('uxUserBenefits');
+  if (ub && C.userBenefits) C.userBenefits.forEach(function (b, i) {
+    var item = el('div', 'uxusr-item reveal');
+    item.style.transitionDelay = Math.min(i, 8) * 0.05 + 's';
+    item.appendChild(el('span', 'uxusr-ico', ICONS[b.icon] || ''));
+    var txt = el('div', 'uxusr-txt');
+    txt.appendChild(el('h4', null, esc(b.title)));
+    txt.appendChild(el('p', null, esc(b.body)));
+    item.appendChild(txt);
+    ub.appendChild(item);
   });
 
   /* Closing investment band */
