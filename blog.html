@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Insight — Gadgeon UX Practice</title>
+  <meta name="description" content="Field notes from the Gadgeon UX Practice — designing enterprise products in the era of AI." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Urbanist:ital,wght@0,400;0,500;0,600;0,700;0,800;1,600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary: #2c1d44; --body-col: #4c3d66; --muted: #99a1af;
+      --grad-a: #f47920; --grad-b: #c756d9; --grad-c: #3182fc;
+      --bg-light: #f4f6fa; --border: #ece9f4; --card: #fff;
+      --font-head: 'Sora', sans-serif; --font-body: 'Urbanist', sans-serif;
+    }
+    * , *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body); color: var(--body-col); background: #fff;
+      -webkit-font-smoothing: antialiased; line-height: 1.6;
+      background:
+        radial-gradient(900px 460px at 12% -4%, rgba(244,121,32,.07), transparent 55%),
+        radial-gradient(820px 460px at 100% 2%, rgba(199,86,217,.07), transparent 55%),
+        #ffffff;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    /* reading progress */
+    .bp-progress { position: fixed; top: 0; left: 0; height: 4px; width: 0; z-index: 60;
+      background: linear-gradient(90deg, var(--grad-a), var(--grad-b), var(--grad-c)); transition: width .1s linear; }
+
+    /* top bar */
+    .bp-nav { position: sticky; top: 0; z-index: 50; display: flex; align-items: center; justify-content: space-between;
+      gap: 16px; padding: 14px clamp(18px, 5vw, 48px);
+      background: rgba(255,255,255,.82); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border); }
+    .bp-logo { display: flex; align-items: center; gap: 10px; font-family: var(--font-head); font-weight: 800; font-size: 18px; color: var(--primary); letter-spacing: -.02em; }
+    .bp-logo img { height: 26px; width: auto; }
+    .bp-back { display: inline-flex; align-items: center; gap: 7px; font-weight: 700; font-size: 14px; color: var(--primary);
+      padding: 9px 16px; border-radius: 100px; border: 1px solid var(--border); background: #fff; transition: transform .15s, box-shadow .15s, border-color .15s; }
+    .bp-back:hover { transform: translateY(-1px); box-shadow: 0 8px 20px rgba(44,29,68,.1); border-color: rgba(199,86,217,.4); }
+    .bp-back svg { width: 15px; height: 15px; }
+
+    /* article */
+    .bp-wrap { max-width: 760px; margin: 0 auto; padding: 0 clamp(20px, 5vw, 24px); }
+    .bp-hero { padding: clamp(40px, 7vw, 72px) 0 8px; }
+    .bp-tag { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-head); font-weight: 800; font-size: 12px;
+      letter-spacing: .1em; text-transform: uppercase; color: var(--grad-b);
+      background: rgba(199,86,217,.08); border: 1px solid rgba(199,86,217,.24); padding: 7px 14px 7px 11px; border-radius: 30px; margin-bottom: 20px; }
+    .bp-spark { width: 15px; height: 15px; color: var(--grad-b); animation: bp-spin 6s linear infinite; }
+    @keyframes bp-spin { to { transform: rotate(360deg); } }
+    .bp-h1 { font-family: var(--font-head); font-weight: 800; color: var(--primary);
+      font-size: clamp(29px, 5vw, 48px); line-height: 1.1; letter-spacing: -.025em; margin-bottom: 22px; }
+    .bp-byline { display: flex; align-items: center; gap: 12px; padding-bottom: 26px; border-bottom: 1px solid var(--border); }
+    .bp-avatar { width: 46px; height: 46px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-head); font-weight: 800; font-size: 15px; color: #fff;
+      background: linear-gradient(135deg, var(--grad-a), var(--grad-b) 55%, var(--grad-c)); }
+    .bp-byline strong { display: block; font-size: 15px; color: var(--primary); }
+    .bp-byline span { font-size: 13.5px; color: var(--muted); }
+
+    .bp-figure { margin: 30px 0 8px; border-radius: 20px; overflow: hidden; box-shadow: 0 20px 60px rgba(44,29,68,.16); aspect-ratio: 16/9; }
+    .bp-figure img { width: 100%; height: 100%; object-fit: cover; }
+
+    .bp-excerpt { font-family: var(--font-head); font-weight: 400; color: var(--primary);
+      font-size: clamp(18px, 2.4vw, 22px); line-height: 1.5; margin: 34px 0 10px;
+      padding-left: 20px; border-left: 3px solid var(--grad-b); }
+
+    .bp-section { margin-top: 34px; }
+    .bp-section h2 { font-family: var(--font-head); font-weight: 800; color: var(--primary);
+      font-size: clamp(21px, 2.8vw, 27px); line-height: 1.25; letter-spacing: -.01em; margin-bottom: 14px; }
+    .bp-section p { font-size: clamp(16px, 1.9vw, 18px); color: var(--body-col); line-height: 1.78; margin-bottom: 16px; }
+
+    .bp-takeaways { margin: 44px 0 10px; padding: 32px clamp(24px, 4vw, 36px); border-radius: 22px;
+      background: linear-gradient(180deg, #f7f3fc, #f1f4fb); border: 1px solid var(--border); }
+    .bp-takeaways h2 { font-family: var(--font-head); font-weight: 800; color: var(--primary); font-size: 22px; margin-bottom: 18px; }
+    .bp-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+    .bp-list li { position: relative; padding-left: 32px; font-size: 16px; font-weight: 500; color: var(--primary); line-height: 1.6; }
+    .bp-list li::before { content: ''; position: absolute; left: 0; top: 5px; width: 18px; height: 18px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--grad-a), var(--grad-c)); opacity: .2; }
+    .bp-list li::after { content: ''; position: absolute; left: 6px; top: 11px; width: 6px; height: 6px; border-radius: 50%; background: var(--grad-b); }
+
+    .bp-cta { position: relative; overflow: hidden; text-align: center; margin: 48px 0 20px; padding: 52px 30px; border-radius: 24px;
+      background: linear-gradient(135deg, rgba(244,121,32,.1), rgba(199,86,217,.1), rgba(49,130,252,.1)); border: 1px solid rgba(199,86,217,.2); }
+    .bp-cta-glow { position: absolute; width: 360px; height: 220px; top: 50%; left: 50%; transform: translate(-50%,-50%);
+      background: radial-gradient(circle, rgba(199,86,217,.22), transparent 70%); filter: blur(34px); }
+    .bp-cta h3 { position: relative; font-family: var(--font-head); font-weight: 800; color: var(--primary); font-size: clamp(22px, 3.4vw, 30px); margin-bottom: 10px; }
+    .bp-cta p { position: relative; font-size: 16px; color: var(--body-col); margin-bottom: 26px; }
+    .bp-btn { position: relative; display: inline-flex; align-items: center; gap: 9px; font-family: var(--font-head); font-weight: 700; font-size: 15px;
+      color: #fff; padding: 15px 28px; border-radius: 100px; background: linear-gradient(135deg, var(--grad-a), var(--grad-b) 55%, var(--grad-c));
+      box-shadow: 0 12px 30px rgba(199,86,217,.32); transition: transform .18s, box-shadow .18s; }
+    .bp-btn:hover { transform: translateY(-2px); box-shadow: 0 16px 40px rgba(199,86,217,.42); }
+    .bp-btn .ar { transition: transform .2s; }
+    .bp-btn:hover .ar { transform: translateX(4px); }
+
+    footer { padding: 40px 0 56px; text-align: center; }
+    .bp-foot { font-size: 13px; color: var(--muted); padding-top: 26px; border-top: 1px solid var(--border); }
+
+    .bp-missing { max-width: 620px; margin: 0 auto; padding: 120px 24px; text-align: center; }
+    .bp-missing h1 { font-family: var(--font-head); font-weight: 800; color: var(--primary); font-size: 28px; margin-bottom: 12px; }
+    .bp-missing p { color: var(--body-col); margin-bottom: 24px; }
+
+    /* reveal */
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+      .bp-spark { animation: none; }
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+<body>
+  <div class="bp-progress" id="bpProgress" aria-hidden="true"></div>
+
+  <header class="bp-nav">
+    <a class="bp-logo" href="index.html" aria-label="Gadgeon.ai home">
+      <img src="assets/brand-logo.png" alt="Gadgeon.ai" onerror="this.style.display='none'" />
+    </a>
+    <a class="bp-back" href="ux.html#insights">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
+      All insights
+    </a>
+  </header>
+
+  <main id="bpMain" class="bp-wrap"></main>
+
+  <footer class="bp-wrap">
+    <p class="bp-foot">© 2026 Gadgeon · UX Practice — Insights from the era of AI-native design.</p>
+  </footer>
+
+  <script src="ux-content.js?v=12"></script>
+  <script>
+  (function () {
+    'use strict';
+    var C = window.UX_CONTENT || {};
+    var main = document.getElementById('bpMain');
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function param(name) {
+      var m = new RegExp('[?&]' + name + '=([^&]+)').exec(location.search);
+      return m ? decodeURIComponent(m[1].replace(/\+/g, ' ')) : null;
+    }
+    function findBlog(key) {
+      var blogs = C.blogs || [];
+      for (var i = 0; i < blogs.length; i++) {
+        if ((blogs[i].slug || String(i)) === key) return blogs[i];
+      }
+      return null;
+    }
+    function initials(name) {
+      return (name || '?').split(/\s+/).slice(0, 2).map(function (w) { return w.charAt(0); }).join('').toUpperCase();
+    }
+    var SPARK = '<svg class="bp-spark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M18 6l-2.5 2.5M8.5 15.5 6 18"/></svg>';
+
+    var key = param('post');
+    var b = key ? findBlog(key) : null;
+
+    if (!b || !b.detail) {
+      main.innerHTML = '<div class="bp-missing"><h1>Article not found</h1><p>This insight may have moved or the link is incomplete.</p><a class="bp-btn" href="ux.html#insights"><span>Browse all insights</span></a></div>';
+      return;
+    }
+
+    document.title = b.title + ' — Gadgeon UX Practice';
+    var t = b.detail;
+
+    var secs = t.sections.map(function (s) {
+      return '<section class="bp-section reveal"><h2>' + s.h + '</h2>' + s.p.map(function (p) { return '<p>' + p + '</p>'; }).join('') + '</section>';
+    }).join('');
+    var takeaways = t.takeaways.map(function (x) { return '<li>' + x + '</li>'; }).join('');
+    var figure = b.img ? '<figure class="bp-figure reveal"><img src="' + b.img + '" alt=""></figure>' : '';
+
+    main.innerHTML =
+      '<div class="bp-hero">'
+      + '<span class="bp-tag reveal">' + SPARK + b.tag + ' · Insight</span>'
+      + '<h1 class="bp-h1 reveal">' + b.title + '</h1>'
+      + '<div class="bp-byline reveal"><span class="bp-avatar">' + initials(b.author) + '</span>'
+      + '<div><strong>' + b.author + '</strong><span>' + b.date + ' · ' + b.read + '</span></div></div>'
+      + '</div>'
+      + figure
+      + '<p class="bp-excerpt reveal">' + t.excerpt + '</p>'
+      + secs
+      + '<section class="bp-takeaways reveal"><h2>Key takeaways</h2><ul class="bp-list">' + takeaways + '</ul></section>'
+      + '<div class="bp-cta reveal"><div class="bp-cta-glow"></div>'
+      + '<h3>Designing something in this space?</h3>'
+      + '<p>Put our AI-native UX practice to work on your next product.</p>'
+      + '<a class="bp-btn" href="ux.html#contact"><span>Start a project</span><span class="ar">&rarr;</span></a></div>';
+
+    /* reading progress */
+    var bar = document.getElementById('bpProgress');
+    function onScroll() {
+      var h = document.documentElement;
+      var max = h.scrollHeight - h.clientHeight;
+      bar.style.width = (max > 0 ? (h.scrollTop || document.body.scrollTop) / max * 100 : 0) + '%';
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    /* reveal on scroll — above-the-fold shows immediately; rest animate in */
+    var reveals = main.querySelectorAll('.reveal');
+    if (reduce || !('IntersectionObserver' in window)) {
+      reveals.forEach(function (n) { n.classList.add('in'); });
+    } else {
+      var ro = new IntersectionObserver(function (entries, obs) {
+        entries.forEach(function (en) {
+          if (en.isIntersecting) { en.target.classList.add('in'); obs.unobserve(en.target); }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+      var vh = window.innerHeight;
+      reveals.forEach(function (n) {
+        if (n.getBoundingClientRect().top < vh * 0.92) n.classList.add('in');
+        else ro.observe(n);
+      });
+    }
+  })();
+  </script>
+</body>
+</html>

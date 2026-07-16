@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Urbanist:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,600;1,700&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css?v=3" />
-  <link rel="stylesheet" href="ux.css?v=7" />
+  <link rel="stylesheet" href="ux.css?v=13" />
 </head>
 <body class="ux-page">
 
@@ -69,10 +69,26 @@
   <div class="section-hdr">
     <div class="eyebrow center">Enterprise UX Insights 2026</div>
     <h2 class="stitle">Why <span class="grad-txt">UX Matters</span> to Your Business</h2>
-    <p class="ux-lead">Poor user experience silently drains revenue, slows your teams, and hands market share to competitors. The enterprises winning in 2026 treat UX as a core business discipline — not a design afterthought.</p>
+    <p class="ux-tagline">Great technology attracts users. <span class="grad-txt">Great UX keeps them.</span></p>
+    <p class="ux-lead">People judge an application not by its technology, but by how easily it helps them reach their goals. For enterprise leaders, that difference is measurable — in revenue, retention, and cost.</p>
   </div>
 
   <div class="uxw-pillars" id="uxWhyPillars"></div>
+
+  <!-- Benefits for users -->
+  <div class="uxu-head reveal">
+    <h3>Benefits for <span class="grad-txt">users</span></h3>
+    <p>Why people stay and come back</p>
+  </div>
+  <div class="uxu-grid" id="uxUserBenefits"></div>
+
+  <!-- Closing investment band -->
+  <div class="uxinv reveal" id="uxInvestment">
+    <div class="uxinv-hdr">
+      <h3 class="uxinv-title">UX is not an expense.<br /><span class="grad-txt">It's an investment that drives growth.</span></h3>
+      <p class="uxinv-sub">Recognize UX as a core driver of digital transformation — and a competitive edge.</p>
+    </div>
+  </div>
 </section>
 
 <!-- ══ AI-DRIVEN UX PROCESS — scroll timeline ══════ -->
@@ -263,8 +279,20 @@
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
 </a>
 
+<!-- ══ DETAIL OVERLAY — case studies & blog articles ══ -->
+<div class="dx" id="uxDetail" hidden aria-hidden="true">
+  <div class="dx-backdrop" data-dx-close></div>
+  <div class="dx-panel" role="dialog" aria-modal="true" aria-labelledby="dxTitle" tabindex="-1">
+    <div class="dx-progress" id="dxProgress" aria-hidden="true"></div>
+    <button class="dx-close" type="button" aria-label="Close" data-dx-close>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
+    <div class="dx-scroll" id="dxScroll"></div>
+  </div>
+</div>
+
 <script src="script.js?v=3"></script>
-<script src="ux-content.js?v=8"></script>
+<script src="ux-content.js?v=16"></script>
 <script src="chatbot.js?v=5"></script>
 </body>
 </html>
