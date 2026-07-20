@@ -328,8 +328,14 @@
 
 /* ══ SUCCESS STORIES ═════════════════════════════ */
 .ux-stories { background: var(--bg-light); }
-.ux-filters { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; max-width: 900px; margin: 0 auto 40px; }
+.ux-filters {
+  display: flex; flex-wrap: nowrap; gap: 10px; justify-content: center;
+  max-width: var(--maxw); margin: 0 auto 40px;
+  overflow-x: auto; -ms-overflow-style: none; scrollbar-width: none; padding-bottom: 2px;
+}
+.ux-filters::-webkit-scrollbar { display: none; }
 .ux-filter {
+  flex: 0 0 auto; white-space: nowrap;
   font-family: var(--font-body); font-size: 14px; font-weight: 700; color: var(--primary);
   background: #fff; border: 1.5px solid var(--border); border-radius: 40px;
   padding: 9px 20px; cursor: pointer; transition: border-color .2s, background .2s, color .2s;
@@ -434,6 +440,8 @@
 }
 @media (max-width: 720px) {
   .ux-hero { min-height: 640px; }
+  /* filters overflow on mobile — left-align so every pill is scroll-reachable */
+  .ux-filters { justify-content: flex-start; padding: 0 20px 4px; }
   .uxb-grid, .uxt-grid, .uxinv-grid { grid-template-columns: 1fr; }
   .uxc-card { flex-basis: 86%; }   /* 1-up carousel, peek of next */
   .uxc-nav.prev { left: -6px; }
