@@ -625,6 +625,45 @@ window.UX_CONTENT = {
       });
       filtersEl.appendChild(b);
     });
+
+    /* Carousel — show 3 at a time, slide left/right */
+    (function () {
+      var prev = document.getElementById('uxcPrev');
+      var next = document.getElementById('uxcNext');
+      if (!prev || !next) return;
+      function firstVisible() {
+        var cards = casesEl.querySelectorAll('.uxc-card');
+        for (var i = 0; i < cards.length; i++) if (cards[i].offsetParent !== null) return cards[i];
+        return cards[0];
+      }
+      function step() {
+        var card = firstVisible();
+        var gap = parseFloat(getComputedStyle(casesEl).gap) || 24;
+        return card ? card.getBoundingClientRect().width + gap : casesEl.clientWidth;
+      }
+      var raf;
+      function update() {
+        var max = casesEl.scrollWidth - casesEl.clientWidth - 1;
+        var overflow = max > 2;
+        prev.hidden = next.hidden = !overflow;
+        prev.disabled = casesEl.scrollLeft <= 1;
+        next.disabled = casesEl.scrollLeft >= max;
+      }
+      prev.addEventListener('click', function () { casesEl.scrollBy({ left: -step(), behavior: 'smooth' }); });
+      next.addEventListener('click', function () { casesEl.scrollBy({ left: step(), behavior: 'smooth' }); });
+      casesEl.addEventListener('scroll', function () {
+        if (raf) cancelAnimationFrame(raf);
+        raf = requestAnimationFrame(update);
+      }, { passive: true });
+      window.addEventListener('resize', update, { passive: true });
+      /* filter clicks bubble here after the display toggles — reset & recount */
+      filtersEl.addEventListener('click', function () {
+        casesEl.scrollTo({ left: 0, behavior: 'auto' });
+        setTimeout(update, 60);
+      });
+      update();
+      setTimeout(update, 350);
+    })();
   }
 
   /* Blogs */
